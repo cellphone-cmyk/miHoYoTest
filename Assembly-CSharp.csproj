@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{16763ED3-6287-E84A-B518-59578DA08BC1}</ProjectGuid>
+    <ProjectGuid>{0F1EB057-4953-1E82-C06B-9EBD424DF0E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -56,13 +56,29 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Weapon\DamageCollider.cs" />
+    <Compile Include="Assets\Script\DamagePlayer.cs" />
+    <Compile Include="Assets\Script\Weapon\WeaponHolderSlot.cs" />
+    <Compile Include="Assets\Script\Weapon\PlayerInventory.cs" />
+    <Compile Include="Assets\Resource\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
     <Compile Include="Assets\Script\InputHandler.cs" />
     <Compile Include="Assets\Script\CameraHandler.cs" />
+    <Compile Include="Assets\Script\HealthBar.cs" />
     <Compile Include="Assets\Script\AnimatorHandler.cs" />
+    <Compile Include="Assets\Script\EnemyStats.cs" />
     <Compile Include="Assets\Script\PlayerManager.cs" />
+    <Compile Include="Assets\Script\PlayerAttacker.cs" />
+    <Compile Include="Assets\Script\ResetAnimatorBool.cs" />
+    <Compile Include="Assets\Script\Weapon\WeaponItem.cs" />
+    <Compile Include="Assets\Script\Weapon\WeaponSlotManager.cs" />
     <Compile Include="Assets\Script\ResetIsInteracting.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
+    <Compile Include="Assets\Script\PlayerStats.cs" />
     <Compile Include="Assets\Script\PlayerLocomotion.cs" />
+    <Compile Include="Assets\Script\Weapon\Item.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Resource\PolygonFantasyHeroCharacters\Shaders\POLYGON_CustomCharacters.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

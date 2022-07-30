@@ -6,15 +6,18 @@ namespace SG
 {
     public class AnimatorHandler : MonoBehaviour
     {
+        PlayerManager playerManager;
         public Animator anim;
-        public InputHandler inputHandler;
-        public PlayerLocomotion playerLocomotion;
+        InputHandler inputHandler;
+        PlayerLocomotion playerLocomotion;
         int vertical;
         int horizontal;
         public bool canRotate;
 
+
         public void Initialize()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             anim = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
@@ -22,7 +25,7 @@ namespace SG
             horizontal = Animator.StringToHash("Horizontal");
         }
 
-        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)
+        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
         {
             #region Vertical
             float v = 0;
@@ -74,6 +77,12 @@ namespace SG
             }
             #endregion
 
+            if (isSprinting)
+            {
+                v = 2;
+                h = horizontalMovement;
+            }
+
             anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
         }
@@ -95,9 +104,19 @@ namespace SG
             canRotate = false;
         }
 
+        public void EnableCombo()
+        {
+            anim.SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            anim.SetBool("canDoCombo", false);
+        }
+
         private void OnAnimatorMove()
         {
-            if (inputHandler.isInteracting == false)
+            if (playerManager.isInteracting == false)
                 return;
 
             float delta = Time.deltaTime;

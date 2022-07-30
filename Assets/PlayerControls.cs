@@ -128,12 +128,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Player Actions"",
-            ""id"": ""d6d5069f-4296-478d-9e3d-a3ec4de75ba9"",
+            ""id"": ""29a59e46-b6de-4204-ba5d-f362dfc0be07"",
             ""actions"": [
                 {
                     ""name"": ""Roll"",
                     ""type"": ""Button"",
-                    ""id"": ""086b4647-1dbe-4af1-8f8f-45d9db764ed9"",
+                    ""id"": ""362b45ab-45fb-4f6c-b226-de565c43950d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RB"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d6ed0d1-5ac7-44a8-b782-593a09682a2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd4ee55d-e73d-4f50-b7d9-bd72b3efb143"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -143,7 +161,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""7c04b507-3f4c-4199-b776-84323cdd92ec"",
+                    ""id"": ""d5e5fe5d-4877-45d1-bf57-973821ef8afe"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aec4c9d3-dcf9-4c21-a97d-c401479bad4d"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -154,12 +183,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""42634192-2bd5-4596-be67-f367f3343e49"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""id"": ""bf4778e2-d645-416e-ab5c-8e658274388d"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roll"",
+                    ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac7881d4-f728-4a5c-a9fd-d375090b6896"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73cb34d4-ab15-4d7e-b473-6f0bce65d020"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -175,6 +226,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player Actions
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Roll = m_PlayerActions.FindAction("Roll", throwIfNotFound: true);
+        m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,11 +329,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Roll;
+    private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_RT;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Roll => m_Wrapper.m_PlayerActions_Roll;
+        public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -293,6 +350,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Roll.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
                 @Roll.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
                 @Roll.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRoll;
+                @RB.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
+                @RB.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
+                @RB.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
+                @RT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
+                @RT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
+                @RT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -300,6 +363,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Roll.started += instance.OnRoll;
                 @Roll.performed += instance.OnRoll;
                 @Roll.canceled += instance.OnRoll;
+                @RB.started += instance.OnRB;
+                @RB.performed += instance.OnRB;
+                @RB.canceled += instance.OnRB;
+                @RT.started += instance.OnRT;
+                @RT.performed += instance.OnRT;
+                @RT.canceled += instance.OnRT;
             }
         }
     }
@@ -312,5 +381,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActionsActions
     {
         void OnRoll(InputAction.CallbackContext context);
+        void OnRB(InputAction.CallbackContext context);
+        void OnRT(InputAction.CallbackContext context);
     }
 }

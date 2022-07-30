@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SG
@@ -21,7 +22,7 @@ namespace SG
 
         private void Awake()
         {
-            cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraHandler = this.GetComponentInChildren<CameraHandler>(); //FindObjectOfType<CameraHandler>();
         }
 
         void Start()
@@ -44,15 +45,11 @@ namespace SG
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
+        //输入
+        private Vector2 input_look;
         private void FixedUpdate()
         {
             float delta = Time.fixedDeltaTime;
-
-            if (cameraHandler != null)
-            {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
         }
 
         private void LateUpdate()
@@ -65,6 +62,13 @@ namespace SG
             if (isInAir)
             {
                 playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            }
+            
+            if (cameraHandler != null)
+            {
+                // cameraHandler.FollowTarget(delta);
+                // cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
             }
         }
 

@@ -71,7 +71,7 @@ namespace SG
 
         private void HandleRollInput(float delta)
         {
-            b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+            b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
 
             if (b_Input)
             {

@@ -37,7 +37,7 @@ namespace SG
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
-            animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_01, true);
+            animatorHandler.PlayTargetAnimation(weapon.oh_heavy_Attack_01, true);
             lastAttack = weapon.oh_light_attack_01;
         }
     }

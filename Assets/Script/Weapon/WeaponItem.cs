@@ -14,9 +14,13 @@ namespace SG
         public string oh_light_attack_01;
         public string oh_light_attack_02;
         public string oh_heavy_Attack_01;
+        public string th_light_attack_01;
+        public string th_light_attack_02;
+        public string th_light_attack_03;
 
         [Header("idle Animation")]
         public string left_arm_idle;
         public string right_arm_idle;
+        public string th_idle;
     }
 }

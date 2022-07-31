@@ -26,13 +26,31 @@ namespace SG
                 {
                     animatorHandler.PlayTargetAnimation(weapon.oh_light_attack_02, true);
                 }
+                else if (lastAttack == weapon.th_light_attack_01)
+                {
+                    animatorHandler.PlayTargetAnimation(weapon.th_light_attack_02, true);
+                    lastAttack = weapon.th_light_attack_02;
+                }
+                else if (lastAttack == weapon.th_light_attack_02)
+                {
+                    animatorHandler.PlayTargetAnimation(weapon.th_light_attack_03, true);
+                }
             }
         }
 
         public void HandleLightAttack(WeaponItem weapon)
         {
-            animatorHandler.PlayTargetAnimation(weapon.oh_light_attack_01, true);
-            lastAttack = weapon.oh_light_attack_01;
+            if (inputHandler.twoHandFlag)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.th_light_attack_01, true);
+                lastAttack = weapon.th_light_attack_01;
+            }
+            else
+            {
+                animatorHandler.PlayTargetAnimation(weapon.oh_light_attack_01, true);
+                lastAttack = weapon.oh_light_attack_01;
+            }
+
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)

@@ -20,9 +20,17 @@ namespace SG
         //[SerializeField]
         //private AimMark aimMark;
 
-        private int lockedEnemyIndex;
+        private int lockedEnemyIndex; //弃用
 
         InputHandler inputHandler;
+
+        #region lock on
+        public Transform currentLockOnTarget;
+        List<CharacterManager> availableTargets = new List<CharacterManager>();
+        public Transform nearestLockOnTarget;
+        public float maximumLockOnDistance = 30;
+        #endregion
+
 
         private void Awake()
         {
@@ -49,26 +57,55 @@ namespace SG
 
         public void HandleLockOn()
         {
-            //按下鼠标中键切换锁定的敌人
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    lockedEnemyIndex = (lockedEnemyIndex + 1) % enemies.Length;
-            //}
-
             if (inputHandler.lockOnFlag == true)
             {
-                lockedEnemyIndex = (lockedEnemyIndex + 1) % enemies.Length;
+                //lockedEnemyIndex = (lockedEnemyIndex + 1) % enemies.Length;
 
-                //使follow的位置和玩家一致
-                follow.position = player.position;
+                ////使follow的位置和玩家一致
+                //follow.position = player.position;
 
-                //使lookAt的位置和旋转都和锁定的目标保持一致
-                LookAt.position = (enemies[lockedEnemyIndex].position + player.position) / 2;
-                LookAt.rotation = enemies[lockedEnemyIndex].rotation;
+                ////使lookAt的位置和旋转都和锁定的目标保持一致
+                //LookAt.position = (enemies[lockedEnemyIndex].position + player.position) / 2;
+                //LookAt.rotation = enemies[lockedEnemyIndex].rotation;
 
-                //使follow的z轴正方向指向lookAt
-                follow.LookAt(LookAt);
-                Debug.Log("look at enemy:" + LookAt.position);
+                ////使follow的z轴正方向指向lookAt
+                //follow.LookAt(LookAt);
+                //Debug.Log("look at enemy:" + LookAt.position);
+
+                float shortestDistance = Mathf.Infinity;
+
+                Collider[] colliders = Physics.OverlapSphere(player.position, 26);
+
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    CharacterManager character = colliders[i].GetComponent<CharacterManager>();
+
+                    if (character != null)
+                    {
+                        Vector3 lockTargetDirection = character.transform.position - player.position;
+                        float distanceFromTarget = Vector3.Distance(player.position, character.transform.position);
+                        float viewableAngle = Vector3.Angle(lockTargetDirection, CmfreeLook.transform.forward);
+
+                        if (character.transform.root != player.transform.root
+                            && viewableAngle > -50 && viewableAngle < 50
+                            && distanceFromTarget <= maximumLockOnDistance)
+                        {
+                            availableTargets.Add(character);
+                        }
+                    }
+                }
+
+                for (int k = 0; k < availableTargets.Count; k++)
+                {
+                    float distanceFromTarget = Vector3.Distance(player.position, availableTargets[k].transform.position);
+
+                    if (distanceFromTarget < shortestDistance)
+                    {
+                        shortestDistance = distanceFromTarget;
+                        nearestLockOnTarget = availableTargets[k].lockOnTransform;
+                        follow.LookAt(nearestLockOnTarget);
+                    }
+                }
             }
             else
             {
@@ -78,6 +115,13 @@ namespace SG
                 follow.LookAt(LookAt);
                 Debug.Log("look at:"+LookAt.position);
             }
+        }
+
+        public void ClearLockOnTargets()
+        {
+            availableTargets.Clear();
+            nearestLockOnTarget = null;
+            currentLockOnTarget = null;
         }
     }
 }

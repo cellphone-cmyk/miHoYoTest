@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1131767073}
   m_Layer: 0
-  m_Name: PlayerTarget
+  m_Name: PlayerLockOnTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65788,6 +65788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2815c508a1dc33a4eb96431d65ef7c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockOnTransform: {fileID: 1131767073}
   isInteracting: 0
   isSprinting: 0
   isInAir: 0
@@ -65811,10 +65812,12 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   b_Input: 0
+  y_Input: 0
   rb_Input: 0
   rt_Input: 0
   lockOnInput: 0
   rollFlag: 0
+  twoHandFlag: 0
   sprintFlag: 0
   comboFlag: 0
   lockOnFlag: 0

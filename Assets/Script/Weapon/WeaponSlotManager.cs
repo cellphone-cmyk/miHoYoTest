@@ -14,9 +14,12 @@ namespace SG
 
         Animator animator;
 
+        InputHandler inputHandler;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            inputHandler = GetComponentInParent<InputHandler>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
@@ -50,16 +53,26 @@ namespace SG
             }
             else
             {
-                rightHandSlot.LoadWeaponModel(weaponItem);
-                LoadRightWeaponDamageCollider();
-                if (weaponItem != null)
+                if (inputHandler.twoHandFlag)
                 {
-                    animator.CrossFade(weaponItem.right_arm_idle, 0.2f);
+                    animator.CrossFade(weaponItem.th_idle, 0.2f);
                 }
                 else
                 {
-                    animator.CrossFade("RightArmEmpty", 0.2f);
+                    #region Handle Right Weapon Idle Animations
+                    animator.CrossFade("Both Arms Empty", 0.2f);
+                    if (weaponItem != null)
+                    {
+                        animator.CrossFade(weaponItem.right_arm_idle, 0.2f);
+                    }
+                    else
+                    {
+                        animator.CrossFade("RightArmEmpty", 0.2f);
+                    }
+                    #endregion
                 }
+                rightHandSlot.LoadWeaponModel(weaponItem);
+                LoadRightWeaponDamageCollider();
             }
         }
 

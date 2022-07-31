@@ -13,11 +13,13 @@ namespace SG
         public float mouseY;
 
         public bool b_Input;
+        public bool y_Input;
         public bool rb_Input;
         public bool rt_Input;
         public bool lockOnInput;
 
         public bool rollFlag;
+        public bool twoHandFlag;
         public bool sprintFlag;
         public bool comboFlag;
         public bool lockOnFlag;
@@ -27,6 +29,7 @@ namespace SG
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+        WeaponSlotManager weaponSlotManager;
        [SerializeField]
         CameraController CameraController;
 
@@ -39,6 +42,7 @@ namespace SG
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
             CameraController = FindObjectOfType<CameraController>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         }
 
         public void OnEnable()
@@ -51,6 +55,7 @@ namespace SG
                 inputActions.PlayerActions.RB.performed += i => rb_Input = true;
                 inputActions.PlayerActions.RT.performed += i => rt_Input = true;
                 inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+                inputActions.PlayerActions.Y.performed += i => y_Input = true;
             }
 
             inputActions.Enable();
@@ -67,6 +72,7 @@ namespace SG
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleLockOnInput();
+            HandleTwoHandInput();
         }
 
         private void MoveInput(float delta)
@@ -144,6 +150,25 @@ namespace SG
                 lockOnFlag = false;
                 CameraController.HandleLockOn();
                 //Clear Lock On targets
+            }
+        }
+
+        private void HandleTwoHandInput()
+        {
+            if (y_Input)
+            {
+                y_Input = false;
+                twoHandFlag = !twoHandFlag;
+
+                if (twoHandFlag) 
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                }
+                else
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+                }
             }
         }
     }

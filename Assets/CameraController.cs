@@ -34,6 +34,14 @@ namespace SG
             inputHandler = FindObjectOfType<InputHandler>();
         }
 
+        private void Start()
+        {
+            follow.position = player.position;
+            LookAt.position = player.position;
+            LookAt.rotation = player.rotation;
+            follow.LookAt(LookAt);
+        }
+
         private void Update()
         {
 

@@ -142,6 +142,7 @@ namespace SG
             {
                 lockOnInput = false;
                 lockOnFlag = false;
+                CameraController.HandleLockOn();
                 //Clear Lock On targets
             }
         }

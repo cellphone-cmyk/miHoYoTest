@@ -22,7 +22,8 @@ namespace SG
 
         private void Awake()
         {
-            cameraHandler = this.GetComponentInChildren<CameraHandler>(); //FindObjectOfType<CameraHandler>();
+            //cameraHandler = this.GetComponentInChildren<CameraHandler>();
+            //FindObjectOfType<CameraController>();
         }
 
         void Start()
@@ -68,7 +69,8 @@ namespace SG
             {
                 // cameraHandler.FollowTarget(delta);
                 // cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-                cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
+                //cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
+               // CameraController.follow.LookAt();
             }
         }
 

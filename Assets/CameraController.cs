@@ -10,7 +10,7 @@ namespace SG
         [SerializeField]
         private CinemachineFreeLook CmfreeLook;
         [SerializeField]
-        private Transform follow;
+        public Transform follow;
         [SerializeField]
         private Transform LookAt;
         [SerializeField]
@@ -50,9 +50,10 @@ namespace SG
             follow.LookAt(LookAt);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-
+            follow.position = player.position;
+            follow.LookAt(nearestLockOnTarget);
         }
 
         public void HandleLockOn()
@@ -103,7 +104,7 @@ namespace SG
                     {
                         shortestDistance = distanceFromTarget;
                         nearestLockOnTarget = availableTargets[k].lockOnTransform;
-                        follow.LookAt(nearestLockOnTarget);
+                        
                     }
                 }
             }

@@ -36,14 +36,14 @@ namespace SG
             currentHealth = currentHealth - damage;
             Debug.Log("Enemy Health:"+currentHealth);
 
-            //animator.Play("Damage_01");
+            animator.Play("Damage");
 
-            //if (currentHealth <= 0)
-            //{
-            //    currentHealth = 0;
-            //    animator.Play("Dead_01");
-            //    //HANDLE PLAYER DEATH
-            //}
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                animator.Play("Dead");
+                //HANDLE PLAYER DEATH
+            }
         }
     }
 }

@@ -15,16 +15,20 @@ namespace SG
         public bool b_Input;
         public bool rb_Input;
         public bool rt_Input;
+        public bool lockOnInput;
 
         public bool rollFlag;
         public bool sprintFlag;
         public bool comboFlag;
+        public bool lockOnFlag;
         public float rollInputTimer;
 
         PlayerControls inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+       [SerializeField]
+        CameraController CameraController;
 
         Vector2 movementInput;
         Vector2 cameraInput;
@@ -34,6 +38,7 @@ namespace SG
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            CameraController = FindObjectOfType<CameraController>();
         }
 
         public void OnEnable()
@@ -43,6 +48,9 @@ namespace SG
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+                inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+                inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             }
 
             inputActions.Enable();
@@ -58,6 +66,7 @@ namespace SG
             MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
+            HandleLockOnInput();
         }
 
         private void MoveInput(float delta)
@@ -118,6 +127,22 @@ namespace SG
             if (rt_Input)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            }
+        }
+
+        private void HandleLockOnInput()
+        {
+            if(lockOnInput && lockOnFlag == false)
+            {
+                lockOnInput = false;
+                lockOnFlag = true;
+                CameraController.HandleLockOn();
+            }
+            else if (lockOnInput && lockOnFlag)
+            {
+                lockOnInput = false;
+                lockOnFlag = false;
+                //Clear Lock On targets
             }
         }
     }

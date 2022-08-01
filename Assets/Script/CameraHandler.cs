@@ -61,6 +61,11 @@ namespace SG
         public float topClamp;		//最大角度
         public float bottomClamp;	//最小角度
         public float pivotSpeed; //纵向速度
+        
+        //new
+        public GameObject aimTarget;
+        public bool isAiming;
+        
         private void Start()
         {
             if(topClamp < bottomClamp)
@@ -78,19 +83,26 @@ namespace SG
         private float _targetYaw;
         public void CameraRotation(float mouseX, float mouseY)
         {
-            // input_look = InputDefine.Instance.input_look;
-            var input_look = new Vector2(mouseX, mouseY);
-            //后续考虑加入手柄输入的支持
-            if(input_look.sqrMagnitude >= 0.01f)
+            if (isAiming && aimTarget != null)
             {
-                _targetYaw += input_look.x;
-                _targetPitch -= input_look.y * pivotSpeed;
+                this.transform.LookAt(aimTarget.transform);
             }
+            else
+            {
+                // input_look = InputDefine.Instance.input_look;
+                var input_look = new Vector2(mouseX, mouseY);
+                //后续考虑加入手柄输入的支持
+                if(input_look.sqrMagnitude >= 0.01f)
+                {
+                    _targetYaw += input_look.x;
+                    _targetPitch -= input_look.y * pivotSpeed;
+                }
     
-            _targetYaw = ClampAngle(_targetYaw, float.MinValue, float.MaxValue);
-            _targetPitch = ClampAngle(_targetPitch, bottomClamp, topClamp);
+                _targetYaw = ClampAngle(_targetYaw, float.MinValue, float.MaxValue);
+                _targetPitch = ClampAngle(_targetPitch, bottomClamp, topClamp);
     
-            this.transform.eulerAngles = new Vector3(_targetPitch, _targetYaw, 0.0f);
+                this.transform.eulerAngles = new Vector3(_targetPitch, _targetYaw, 0.0f);
+            }
         }
     
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

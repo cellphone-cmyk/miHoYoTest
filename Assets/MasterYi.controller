@@ -458,7 +458,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 1827226128182048838, guid: ff4bc453262386b48b205fc94c9bf419, type: 3}
     m_Threshold: 0.5
-    m_Position: {x: 1, y: -1}
+    m_Position: {x: 1, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: moveAmount

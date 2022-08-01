@@ -62,11 +62,11 @@
     <Compile Include="Assets\Script\Weapon\PlayerInventory.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Resource\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
-    <Compile Include="Assets\Script\CharacterManager.cs" />
-    <Compile Include="Assets\Script\InputHandler.cs" />
+    <Compile Include="Assets\Script\temp\CharacterManager.cs" />
+    <Compile Include="Assets\Script\temp\InputHandler.cs" />
     <Compile Include="Assets\Script\CameraHandler.cs" />
     <Compile Include="Assets\Script\HealthBar.cs" />
-    <Compile Include="Assets\Script\AnimatorHandler.cs" />
+    <Compile Include="Assets\Script\temp\AnimatorHandler.cs" />
     <Compile Include="Assets\Script\EnemyStats.cs" />
     <Compile Include="Assets\Script\PlayerManager.cs" />
     <Compile Include="Assets\Script\PlayerAttacker.cs" />
@@ -75,8 +75,8 @@
     <Compile Include="Assets\Script\Weapon\WeaponSlotManager.cs" />
     <Compile Include="Assets\Script\EnemyManager.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
-    <Compile Include="Assets\Script\PlayerStats.cs" />
-    <Compile Include="Assets\Script\PlayerLocomotion.cs" />
+    <Compile Include="Assets\Script\temp\PlayerStats.cs" />
+    <Compile Include="Assets\Script\temp\PlayerLocomotion.cs" />
     <Compile Include="Assets\Script\Weapon\Item.cs" />
     <Compile Include="Assets\InputController.cs" />
     <Compile Include="Assets\Script\PlayerLocomotion1.cs" />

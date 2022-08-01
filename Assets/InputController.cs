@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SG;
 
 public class InputController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InputController : MonoBehaviour
     public bool lockOnFlag;
 
     PlayerControls inputActions;
+    CameraHandler cameraHandler;
 
     Vector2 movementInput;
     Vector2 cameraInput;
@@ -27,6 +29,7 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         //需要获取的组件
+        cameraHandler = GetComponentInChildren<CameraHandler>();
     }
 
     public void OnEnable()
@@ -53,7 +56,7 @@ public class InputController : MonoBehaviour
     {
         MoveInput(delta);
         //HandleAttackInput(delta);
-        //HandleLockOnInput();
+        HandleLockOnInput();
     }
 
     private void MoveInput(float delta)
@@ -98,19 +101,18 @@ public class InputController : MonoBehaviour
 
     private void HandleLockOnInput()
     {
-        //if (lockOnInput && lockOnFlag == false)
-        //{
-        //    lockOnInput = false;
-        //    lockOnFlag = true;
-        //    CameraController.HandleLockOn();
-        //}
-        //else if (lockOnInput && lockOnFlag)
-        //{
-        //    lockOnInput = false;
-        //    lockOnFlag = false;
-        //    CameraController.HandleLockOn();
-        //    //Clear Lock On targets
-        //}
+        if (lockOnInput && lockOnFlag == false)
+        {
+            lockOnInput = false;
+            lockOnFlag = true;
+            cameraHandler.isAiming = true;
+        }
+        else if (lockOnInput && lockOnFlag)
+        {
+            lockOnInput = false;
+            lockOnFlag = false;
+            cameraHandler.isAiming = false;
+        }
     }
 
 

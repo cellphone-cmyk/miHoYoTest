@@ -9,10 +9,9 @@ public class PlayerManager1 : MonoBehaviour
     PlayerLocomotion1 playerLocomotion;
     CameraHandler cameraHandler;
 
-    public bool isInteracting;
 
     [Header("Player Flags")]
-    public bool isGrounded;
+    public bool isInteracting;
     public bool canDoCombo;
 
     private void Awake()
@@ -51,11 +50,7 @@ public class PlayerManager1 : MonoBehaviour
 
         if (cameraHandler != null)
         {
-            // cameraHandler.FollowTarget(delta);
-            // cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            //cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
-            // CameraController.follow.LookAt();
-            cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
+            cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY,Time.fixedDeltaTime);
         }
     }
 

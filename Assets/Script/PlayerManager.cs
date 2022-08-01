@@ -71,7 +71,7 @@ namespace SG
                 // cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
                 //cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
                // CameraController.follow.LookAt();
-               cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY);
+               cameraHandler.CameraRotation(inputHandler.mouseX, inputHandler.mouseY, Time.fixedDeltaTime);
             }
         }
 

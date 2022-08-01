@@ -76,12 +76,6 @@ public class AnimatorController : MonoBehaviour
         }
         #endregion
 
-        //if (isSprinting)
-        //{
-        //    v = 2;
-        //    h = horizontalMovement;
-        //}
-
         anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
         anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
     }
@@ -115,16 +109,7 @@ public class AnimatorController : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        //if (playerManager.isInteracting == false)
-        //    return;
-
-        //float delta = Time.deltaTime;
-        //playerLocomotion.rigidbody.drag = 0;
         anim.ApplyBuiltinRootMotion();
-        //Vector3 deltaPosition = anim.deltaPosition;
-        //deltaPosition.y = 0;
-        //Vector3 velocity = deltaPosition / delta;
-        //playerLocomotion.rigidbody.velocity = velocity;
     }
 
 }

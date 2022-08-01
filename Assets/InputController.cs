@@ -22,6 +22,7 @@ public class InputController : MonoBehaviour
     PlayerControls inputActions;
 
     Vector2 movementInput;
+    Vector2 cameraInput;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class InputController : MonoBehaviour
         {
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+            inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             inputActions.PlayerActions.RB.performed += i => rb_Input = true;
             inputActions.PlayerActions.RT.performed += i => rt_Input = true;
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
@@ -59,8 +61,8 @@ public class InputController : MonoBehaviour
         horizontal = movementInput.x;
         vertical = movementInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-        //mouseX = cameraInput.x;
-        //mouseY = cameraInput.y;
+        mouseX = cameraInput.x;
+        mouseY = cameraInput.y;
     }
 
     private void HandleAttackInput(float delta)

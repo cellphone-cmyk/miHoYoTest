@@ -8,7 +8,7 @@ public class ResetAnimatorBool : StateMachineBehaviour
     public string targetBool;
     public bool status;
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool(targetBool, status);
     }

@@ -41,7 +41,7 @@ public class PlayerAttacker1 : MonoBehaviour
     public void HandleHeavyAttack()
     {
         //animatorHandler.anim.SetInteger("Combo", 1);
-        animatorHandler.PlayTargetAnimation("combo1", true);
+        animatorHandler.PlayTargetAnimation("heavyAttack", true);
         lastCombo = 1;        
     }
 

@@ -8,6 +8,7 @@ public class DamageTarget : MonoBehaviour
     public GameObject character;
     public int currentWeaponDamage = 25;
     string currentDamageAnimation;
+
     private void OnTriggerEnter(Collider collision)
     {
         //GameObject enemy = collision.GetComponentInParent<GameObject>();
@@ -22,11 +23,17 @@ public class DamageTarget : MonoBehaviour
         //    }
         //}
 
+        CharacterEffectsManager enemyEffects = collision.GetComponent<CharacterEffectsManager>();
+
         if (collision.tag == "Enemy")
         {
+            //挂特效
+            Vector3 contactPoint = collision.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            //攻击方向
             float directionHitFrom = (Vector3.SignedAngle(character.transform.forward, collision.transform.forward, Vector3.up));
             ChooseWhichDirectionDamageCameFrom(directionHitFrom);
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            enemyEffects.PlayBloodSplatterFX(contactPoint);
 
             if (enemyStats != null)
             {

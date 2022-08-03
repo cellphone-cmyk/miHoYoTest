@@ -1061,6 +1061,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6018193531084106385, guid: c718549925d0fe04c8d1468bf91b0bd0, type: 3}
   m_PrefabInstance: {fileID: 6018193529795850867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1476868078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3883720448703411194, guid: 07f5e368bc690324f91c9dc9617f3b9d, type: 3}
+  m_PrefabInstance: {fileID: 3883720447495504916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476868088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476868078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc5c1db3af7d4a4f93d441dd9835f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSplatterFX: {fileID: 1028757127096146, guid: 7cef54b64731a754e96acc803eca057d, type: 3}
 --- !u!1 &2033028239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7384163404231772791, guid: c718549925d0fe04c8d1468bf91b0bd0, type: 3}

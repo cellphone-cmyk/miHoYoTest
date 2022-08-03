@@ -68,6 +68,10 @@
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Script\PlayerManager1.cs" />
     <Compile Include="Assets\Script\InputController.cs" />
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\GameManager.cs" />
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\ButtonAnimation.cs" />
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\SelfDestruct.cs" />
+    <Compile Include="Assets\Script\CharacterEffectsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resource\EnemyModel\Shaders\POLYGON_CustomCharacters.shader" />

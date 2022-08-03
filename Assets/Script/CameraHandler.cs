@@ -32,8 +32,9 @@ namespace SG
         {
             if (isAiming && aimTarget != null)
             {
-                cameraPosition.z = Mathf.Lerp(cameraTransform.localPosition.z,aimTarget.transform.localPosition.z, delta/0.2f );
-                this.transform.LookAt(aimTarget.transform);
+                //cameraPosition.z = Mathf.Lerp(cameraTransform.localPosition.z,aimTarget.transform.localPosition.z, delta/0.2f );
+                
+                this.transform.LookAt((aimTarget.transform.position+cameraPosition)/2);
             }
             else
             {

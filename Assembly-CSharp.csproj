@@ -56,37 +56,21 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Weapon\DamageCollider.cs" />
-    <Compile Include="Assets\Script\DamagePlayer.cs" />
-    <Compile Include="Assets\Script\Weapon\WeaponHolderSlot.cs" />
-    <Compile Include="Assets\Script\Weapon\PlayerInventory.cs" />
-    <Compile Include="Assets\CameraController.cs" />
-    <Compile Include="Assets\Resource\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
-    <Compile Include="Assets\Script\temp\CharacterManager.cs" />
-    <Compile Include="Assets\Script\temp\InputHandler.cs" />
+    <Compile Include="Assets\Script\DamageCollider.cs" />
     <Compile Include="Assets\Script\CameraHandler.cs" />
     <Compile Include="Assets\Script\HealthBar.cs" />
     <Compile Include="Assets\Script\AnimatorController.cs" />
-    <Compile Include="Assets\Script\temp\AnimatorHandler.cs" />
     <Compile Include="Assets\Script\EnemyStats.cs" />
-    <Compile Include="Assets\DamageTarget.cs" />
-    <Compile Include="Assets\Script\PlayerManager.cs" />
-    <Compile Include="Assets\Script\PlayerAttacker.cs" />
+    <Compile Include="Assets\Script\DamageTarget.cs" />
     <Compile Include="Assets\Script\ResetAnimatorBool.cs" />
-    <Compile Include="Assets\Script\Weapon\WeaponItem.cs" />
-    <Compile Include="Assets\Script\Weapon\WeaponSlotManager.cs" />
-    <Compile Include="Assets\PlayerAttacker1.cs" />
+    <Compile Include="Assets\Script\PlayerAttacker1.cs" />
     <Compile Include="Assets\Script\PlayerLocomotion1.cs" />
-    <Compile Include="Assets\Script\EnemyManager.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
-    <Compile Include="Assets\PlayerManager1.cs" />
-    <Compile Include="Assets\Script\temp\PlayerStats.cs" />
-    <Compile Include="Assets\InputController.cs" />
-    <Compile Include="Assets\Script\temp\PlayerLocomotion.cs" />
-    <Compile Include="Assets\Script\Weapon\Item.cs" />
+    <Compile Include="Assets\Script\PlayerManager1.cs" />
+    <Compile Include="Assets\Script\InputController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resource\PolygonFantasyHeroCharacters\Shaders\POLYGON_CustomCharacters.shader" />
+    <None Include="Assets\Resource\EnemyModel\Shaders\POLYGON_CustomCharacters.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

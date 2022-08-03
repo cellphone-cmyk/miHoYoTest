@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLocomotion1 : MonoBehaviour
 {
-    //PlayerManager playerManager;
+    PlayerManager1 playerManager;
     Transform cameraObject;
     InputController inputHandler;
     public Vector3 moveDirection;
@@ -29,7 +29,7 @@ public class PlayerLocomotion1 : MonoBehaviour
 
     void Start()
     {
-        //playerManager = GetComponent<PlayerManager>();
+        playerManager = GetComponent<PlayerManager1>();
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputController>();
         animatorHandler = GetComponentInChildren<AnimatorController>();
@@ -71,8 +71,8 @@ public class PlayerLocomotion1 : MonoBehaviour
     public void HandleMovement(float delta)
     {
 
-        //if (playerManager.isInteracting)
-        //    return;
+        if (playerManager.isInteracting)
+            return;
 
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;

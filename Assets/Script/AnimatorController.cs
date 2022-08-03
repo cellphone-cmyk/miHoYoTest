@@ -16,7 +16,7 @@ public class AnimatorController : MonoBehaviour
 
     public void Initialize()
     {
-        //playerManager = GetComponentInParent<PlayerManager>();
+        playerManager = GetComponentInParent<PlayerManager1>();
         anim = GetComponent<Animator>();
         inputHandler = GetComponentInParent<InputController>();
         playerLocomotion = GetComponentInParent<PlayerLocomotion1>();
@@ -87,6 +87,12 @@ public class AnimatorController : MonoBehaviour
         anim.CrossFade(targetAnim, 0.2f);
     }
 
+    //强行锁isInteracting,防止出错
+    public void DisableIteracting()
+    {
+       anim.SetBool("isInteracting", true);
+    }
+
     public void CanRotate()
     {
         canRotate = true;
@@ -109,7 +115,18 @@ public class AnimatorController : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        anim.ApplyBuiltinRootMotion();
+        if (playerManager.isInteracting == false)
+            return;
+
+        float delta = Time.deltaTime;
+        playerLocomotion.rigidbody.drag = 0;
+        Vector3 deltaPosition = anim.deltaPosition;
+        deltaPosition.y = 0;
+        Vector3 velocity = deltaPosition / delta;
+        playerLocomotion.rigidbody.velocity = velocity;
+        //Debug.Log(velocity);
+        //anim.ApplyBuiltinRootMotion();
+
     }
 
 }

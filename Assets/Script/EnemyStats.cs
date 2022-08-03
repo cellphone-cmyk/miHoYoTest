@@ -30,13 +30,18 @@ namespace SG
             maxHealth = healthLevel * 10;
             return maxHealth;
         }
-
-        public void TakeDamage(int damage)
+        public void PlayTargetAnimation(string targetAnim, bool isInteracting)
         {
-            currentHealth = currentHealth - damage;
-            Debug.Log("Enemy Health:"+currentHealth);
-
-            animator.Play("Damage");
+            animator.applyRootMotion = isInteracting;
+            animator.SetBool("isInteracting", isInteracting);
+            animator.CrossFade(targetAnim, 0.2f);
+        }
+        public void TakeDamage(int damage,string damageAnimation)
+        {
+            //currentHealth = currentHealth - damage;
+            //Debug.Log("Enemy Health:"+currentHealth);
+            PlayTargetAnimation(damageAnimation, true);
+            animator.Play(damageAnimation);
 
             if (currentHealth <= 0)
             {

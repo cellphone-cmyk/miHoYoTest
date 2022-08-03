@@ -9,16 +9,16 @@ namespace SG
         //CharacterStatsManager characterStatsManager;
 
         [Header("Damage FX")]
-        public GameObject bloodSplatterFX;
+        public GameObject hitFX;
 
         protected virtual void Awake()
         {
             //characterStatsManager = GetComponent<CharacterStatsManager>();
         }
 
-        public virtual void PlayBloodSplatterFX(Vector3 bloodSplatterLocation)
+        public virtual void PlayBloodSplatterFX(Vector3 FxLocation)
         {
-            GameObject blood = Instantiate(bloodSplatterFX, bloodSplatterLocation, Quaternion.identity);
+            GameObject blood = Instantiate(hitFX, FxLocation, Quaternion.identity);
         }
 
     }

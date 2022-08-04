@@ -34,7 +34,9 @@ namespace SG
             {
                 //cameraPosition.z = Mathf.Lerp(cameraTransform.localPosition.z,aimTarget.transform.localPosition.z, delta/0.2f );
                 
-                this.transform.LookAt((aimTarget.transform.position+cameraPosition)/2);
+                this.transform.LookAt(aimTarget.transform);
+                _targetPitch = ClampAngle(this.transform.eulerAngles.x, 60, 10);
+                this.transform.eulerAngles = new Vector3(_targetPitch, this.transform.eulerAngles.y,0.0f);
             }
             else
             {

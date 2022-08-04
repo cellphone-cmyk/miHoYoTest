@@ -8,6 +8,12 @@ public class DamageTarget : MonoBehaviour
     public GameObject character;
     public int currentWeaponDamage = 25;
     string currentDamageAnimation;
+    TraumaInducer traumaInducer;
+
+    private void Awake()
+    {
+        traumaInducer = FindObjectOfType<TraumaInducer>();
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -34,6 +40,7 @@ public class DamageTarget : MonoBehaviour
             ChooseWhichDirectionDamageCameFrom(directionHitFrom);
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
             enemyEffects.PlayBloodSplatterFX(contactPoint);
+            traumaInducer.StartCoroutine("Shake");
 
             if (enemyStats != null)
             {

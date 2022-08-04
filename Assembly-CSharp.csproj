@@ -56,22 +56,24 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\ButtonAnimation.cs" />
     <Compile Include="Assets\Script\DamageCollider.cs" />
+    <Compile Include="Assets\Script\CharacterEffectsManager.cs" />
     <Compile Include="Assets\Script\CameraHandler.cs" />
     <Compile Include="Assets\Script\HealthBar.cs" />
     <Compile Include="Assets\Script\AnimatorController.cs" />
     <Compile Include="Assets\Script\EnemyStats.cs" />
     <Compile Include="Assets\Script\DamageTarget.cs" />
     <Compile Include="Assets\Script\ResetAnimatorBool.cs" />
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\SelfDestruct.cs" />
+    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\GameManager.cs" />
     <Compile Include="Assets\Script\PlayerAttacker1.cs" />
     <Compile Include="Assets\Script\PlayerLocomotion1.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Script\PlayerManager1.cs" />
     <Compile Include="Assets\Script\InputController.cs" />
-    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\GameManager.cs" />
-    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\Demo Scene\ButtonAnimation.cs" />
-    <Compile Include="Assets\Resource\Hit &amp; Slashes Vol.1\SelfDestruct.cs" />
-    <Compile Include="Assets\Script\CharacterEffectsManager.cs" />
+    <Compile Include="Assets\CameraShakeFX\Scripts\TraumaInducer.cs" />
+    <Compile Include="Assets\CameraShakeFX\Scripts\StressReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resource\EnemyModel\Shaders\POLYGON_CustomCharacters.shader" />

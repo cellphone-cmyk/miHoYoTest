@@ -28,5 +28,15 @@ namespace SG
         {
             damageCollider.enabled = false;
         }
+
+        public void EnableTrailRenderer()
+        {
+            weaponModel.GetComponentInChildren<TrailRenderer>().enabled = true;
+        }
+
+        public void DisableTrailRenderer()
+        {
+            weaponModel.GetComponentInChildren<TrailRenderer>().enabled = false;
+        }
     }
 }

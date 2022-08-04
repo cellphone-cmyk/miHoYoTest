@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -123,7 +124,15 @@ public class AnimatorController : MonoBehaviour
         Vector3 deltaPosition = anim.deltaPosition;
         deltaPosition.y = 0;
         Vector3 velocity = deltaPosition / delta;
-        playerLocomotion.rigidbody.velocity = velocity;
+        try
+        {
+            playerLocomotion.rigidbody.velocity = velocity;
+        } 
+        catch(Exception e)
+        {
+            throw (e);
+        }
+        
         //Debug.Log(velocity);
         //anim.ApplyBuiltinRootMotion();
 

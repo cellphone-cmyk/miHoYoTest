@@ -40,7 +40,9 @@ public class DamageTarget : MonoBehaviour
             ChooseWhichDirectionDamageCameFrom(directionHitFrom);
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
             enemyEffects.PlayBloodSplatterFX(contactPoint);
+            
             traumaInducer.StartCoroutine("Shake");
+            traumaInducer.HitPause();
 
             if (enemyStats != null)
             {

@@ -64782,6 +64782,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.29166666
+    functionName: EnableTrailRenderer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.375
     functionName: EnableDamageCollider
     data: 
@@ -64791,6 +64798,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.5
     functionName: DisaleDamageCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5416667
+    functionName: DisableTrailRenderer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

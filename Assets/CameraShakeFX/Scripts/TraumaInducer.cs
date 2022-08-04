@@ -10,6 +10,8 @@ public class TraumaInducer : MonoBehaviour
     public float MaximumStress = 0.6f;
     [Tooltip("Maximum distance in which objects are affected by this TraumaInducer")]
     public float Range = 45;
+    [Tooltip("HitPause Time")]
+    public float duration = 1;
 
     public IEnumerator Shake()
     {
@@ -30,8 +32,20 @@ public class TraumaInducer : MonoBehaviour
             float distance01 = Mathf.Clamp01(distance / Range);
             float stress = (1 - Mathf.Pow(distance01, 2)) * MaximumStress;
             receiver.InduceStress(stress);
-            Debug.Log("shake");
         }
+    }
+
+    public IEnumerator Pause()
+    {
+        float pauseTime = duration / 60f;
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(pauseTime);
+        Time.timeScale = 1;
+    }
+
+    public void HitPause()
+    {
+        StartCoroutine(Pause());
     }
 
     /* Search for all the particle system in the game objects children */

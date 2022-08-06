@@ -109,15 +109,6 @@
             "id": "29a59e46-b6de-4204-ba5d-f362dfc0be07",
             "actions": [
                 {
-                    "name": "Roll",
-                    "type": "Button",
-                    "id": "362b45ab-45fb-4f6c-b226-de565c43950d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "RB",
                     "type": "Button",
                     "id": "4d6ed0d1-5ac7-44a8-b782-593a09682a2b",
@@ -143,40 +134,9 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Y",
-                    "type": "Button",
-                    "id": "1f4ba7db-0bc0-4ffe-a439-412cbe3f49b4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "d5e5fe5d-4877-45d1-bf57-973821ef8afe",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aec4c9d3-dcf9-4c21-a97d-c401479bad4d",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "bf4778e2-d645-416e-ab5c-8e658274388d",
@@ -229,17 +189,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0fa25ce8-47af-406e-91af-87ed9e274b96",
-                    "path": "<Keyboard>/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Y",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

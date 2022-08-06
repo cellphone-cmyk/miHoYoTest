@@ -8,7 +8,10 @@ public class PlayerManager1 : MonoBehaviour
     Animator anim;
     PlayerLocomotion1 playerLocomotion;
     CameraHandler cameraHandler;
-
+    public Collider[] colliders;
+    [Header("Search Distance")]
+    public Transform OverlapSpherePlayer;
+    public float SearchRadius;
 
     [Header("Player Flags")]
     public bool isInteracting;
@@ -23,6 +26,7 @@ public class PlayerManager1 : MonoBehaviour
         inputHandler = GetComponent<InputController>();
         anim = GetComponentInChildren<Animator>();
         playerLocomotion = GetComponent<PlayerLocomotion1>();
+
     }
 
     void Update()
@@ -34,6 +38,23 @@ public class PlayerManager1 : MonoBehaviour
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
 
+        SearchNearEenmy();
+    }
+
+    public void SearchNearEenmy()
+    {
+        colliders = Physics.OverlapSphere(OverlapSpherePlayer.position,SearchRadius,1<<LayerMask.NameToLayer("Enemy"));
+        
+        if (colliders.Length <= 0) return;
+    }
+
+    public void RotateToEnemy()
+    {
+        if (colliders.Length > 0)
+        {
+            transform.LookAt(colliders[0].transform.position);
+            Debug.Log("rotate");
+        }
     }
 
     private void FixedUpdate()

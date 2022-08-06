@@ -2,41 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SG
+
+public class DamageCollider : MonoBehaviour
 {
-    public class DamageCollider : MonoBehaviour
-    {
-        public GameObject weaponModel;
-        Collider damageCollider;
+    public GameObject weaponModel;
+    Collider damageCollider;
         
 
-        private void Awake()
-        {
+    private void Awake()
+    {
 
-            damageCollider = weaponModel.GetComponent<Collider>();
-            damageCollider.gameObject.SetActive(true);
-            damageCollider.isTrigger = true;
-            damageCollider.enabled = false;
-        }
+        damageCollider = weaponModel.GetComponent<Collider>();
+        damageCollider.gameObject.SetActive(true);
+        damageCollider.isTrigger = true;
+        damageCollider.enabled = false;
+    }
 
-        public void EnableDamageCollider()
-        {
-            damageCollider.enabled = true;
-        }
+    public void EnableDamageCollider()
+    {
+        damageCollider.enabled = true;
+    }
 
-        public void DisaleDamageCollider()
-        {
-            damageCollider.enabled = false;
-        }
+    public void DisaleDamageCollider()
+    {
+        damageCollider.enabled = false;
+    }
 
-        public void EnableTrailRenderer()
-        {
-            weaponModel.GetComponentInChildren<TrailRenderer>().enabled = true;
-        }
+    public void EnableTrailRenderer()
+    {
+        weaponModel.GetComponentInChildren<TrailRenderer>().enabled = true;
+    }
 
-        public void DisableTrailRenderer()
-        {
-            weaponModel.GetComponentInChildren<TrailRenderer>().enabled = false;
-        }
+    public void DisableTrailRenderer()
+    {
+        weaponModel.GetComponentInChildren<TrailRenderer>().enabled = false;
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SG;
 
 public class DamageTarget : MonoBehaviour
 {
@@ -17,17 +16,6 @@ public class DamageTarget : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        //GameObject enemy = collision.GetComponentInParent<GameObject>();
-
-        //if (collision.tag == "Player")
-        //{
-        //    PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-
-        //    if (playerStats != null)
-        //    {
-        //        playerStats.TakeDamage(currentWeaponDamage);
-        //    }
-        //}
 
         CharacterEffectsManager enemyEffects = collision.GetComponent<CharacterEffectsManager>();
 
@@ -53,7 +41,7 @@ public class DamageTarget : MonoBehaviour
 
     protected virtual void ChooseWhichDirectionDamageCameFrom(float direction)
     {
-        Debug.Log(direction);
+        //Debug.Log(direction);
 
         if (direction >= 145 && direction <= 180)
         {

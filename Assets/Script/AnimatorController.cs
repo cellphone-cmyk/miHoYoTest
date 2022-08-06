@@ -120,18 +120,12 @@ public class AnimatorController : MonoBehaviour
             return;
 
         float delta = Time.deltaTime;
+        if (delta == 0) return;
         playerLocomotion.rigidbody.drag = 0;
         Vector3 deltaPosition = anim.deltaPosition;
         deltaPosition.y = 0;
         Vector3 velocity = deltaPosition / delta;
-        try
-        {
-            playerLocomotion.rigidbody.velocity = velocity;
-        } 
-        catch(Exception e)
-        {
-            throw (e);
-        }
+        playerLocomotion.rigidbody.velocity = velocity;
         
         //Debug.Log(velocity);
         //anim.ApplyBuiltinRootMotion();

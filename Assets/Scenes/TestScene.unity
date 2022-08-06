@@ -642,7 +642,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1962264, y: 1}
+    m_SensorSize: {x: 1.1754717, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1412,6 +1412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3883720448703411194, guid: 07f5e368bc690324f91c9dc9617f3b9d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f5e368bc690324f91c9dc9617f3b9d, type: 3}
 --- !u!1 &3883720447495504917 stripped
@@ -1842,6 +1846,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterYi
       objectReference: {fileID: 0}
+    - target: {fileID: 6018193529976778616, guid: c718549925d0fe04c8d1468bf91b0bd0, type: 3}
+      propertyPath: SearchRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018193529976778616, guid: c718549925d0fe04c8d1468bf91b0bd0, type: 3}
+      propertyPath: OverlapSpherePlayer
+      value: 
+      objectReference: {fileID: 1423661282}
     - target: {fileID: 6018193530451967712, guid: c718549925d0fe04c8d1468bf91b0bd0, type: 3}
       propertyPath: character
       value: 

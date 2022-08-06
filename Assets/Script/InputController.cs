@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SG;
 
 public class InputController : MonoBehaviour
 {
@@ -93,7 +92,6 @@ public class InputController : MonoBehaviour
 
                 if (playerManager.canDoCombo)
                     return;
-
                 playerAttacker.HandleLightAttack();
             }
         }

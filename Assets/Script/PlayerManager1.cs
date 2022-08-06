@@ -8,10 +8,11 @@ public class PlayerManager1 : MonoBehaviour
     Animator anim;
     PlayerLocomotion1 playerLocomotion;
     CameraHandler cameraHandler;
-    public Collider[] colliders;
+
     [Header("Search Distance")]
     public Transform OverlapSpherePlayer;
     public float SearchRadius;
+    public Collider[] colliders;
 
     [Header("Player Flags")]
     public bool isInteracting;
@@ -32,6 +33,7 @@ public class PlayerManager1 : MonoBehaviour
     void Update()
     {
         float delta = Time.deltaTime;
+        
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
 
@@ -53,7 +55,6 @@ public class PlayerManager1 : MonoBehaviour
         if (colliders.Length > 0)
         {
             transform.LookAt(colliders[0].transform.position);
-            Debug.Log("rotate");
         }
     }
 

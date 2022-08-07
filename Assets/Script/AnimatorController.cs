@@ -2,13 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class AnimatorController : MonoBehaviour
 {
     PlayerManager1 playerManager;
     public Animator anim;
-    InputController inputHandler;
     PlayerLocomotion1 playerLocomotion;
     int vertical;
     int horizontal;
@@ -19,7 +18,6 @@ public class AnimatorController : MonoBehaviour
     {
         playerManager = GetComponentInParent<PlayerManager1>();
         anim = GetComponent<Animator>();
-        inputHandler = GetComponentInParent<InputController>();
         playerLocomotion = GetComponentInParent<PlayerLocomotion1>();
         vertical = Animator.StringToHash("Vertical");
         horizontal = Animator.StringToHash("Horizontal");
@@ -112,6 +110,21 @@ public class AnimatorController : MonoBehaviour
     public void DisableCombo()
     {
         anim.SetBool("canDoCombo", false);
+    }
+
+    public void EnableSpecialCombo()
+    {
+        anim.SetBool("canDoSpecialCombo",true);
+    }
+
+    public void DisableSpecialCombo()
+    {
+        anim.SetBool("canDoSpecialCombo", false); ;
+    }
+
+    public void reloadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void OnAnimatorMove()

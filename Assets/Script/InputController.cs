@@ -16,8 +16,10 @@ public class InputController : MonoBehaviour
     public bool rt_Input;
     public bool lockOnInput;
     public bool isInteracting;
+    public bool isDead;
 
     public bool comboFlag;
+    public bool SpecialComboFlag;
     public bool lockOnFlag;
 
     PlayerControls inputActions;
@@ -46,6 +48,7 @@ public class InputController : MonoBehaviour
             inputActions.PlayerActions.RB.performed += i => rb_Input = true;
             inputActions.PlayerActions.RT.performed += i => rt_Input = true;
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            inputActions.PlayerActions.ResPawn.performed += i => isDead = true;
         }
 
         inputActions.Enable();
@@ -61,6 +64,7 @@ public class InputController : MonoBehaviour
         MoveInput(delta);
         HandleAttackInput(delta);
         HandleLockOnInput();
+        HandleDeath();
     }
 
     private void MoveInput(float delta)
@@ -98,6 +102,17 @@ public class InputController : MonoBehaviour
 
         if (rt_Input)
         {
+            if (playerManager.canDoSpecialCombo)
+            {
+                comboFlag = true;
+                playerAttacker.HandleSpecialCombo();
+                comboFlag = false;
+            }
+            if (playerManager.isInteracting)
+                return;
+
+            if (playerManager.canDoSpecialCombo)
+                return;
             playerAttacker.HandleHeavyAttack();
         }
     }
@@ -118,5 +133,11 @@ public class InputController : MonoBehaviour
         }
     }
 
-
+    public void HandleDeath()
+    {
+        if (isDead)
+        {
+            playerManager.isDead = true;
+        }
+    }
 }

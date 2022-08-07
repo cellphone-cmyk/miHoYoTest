@@ -26,19 +26,20 @@ public class PlayerAttacker1 : MonoBehaviour
         {
             playerManager.RotateToEnemy();
             animatorHandler.anim.SetBool("canDoCombo", false);
+            animatorHandler.anim.SetBool("canDoSpecialCombo", false);
             animatorHandler.anim.SetInteger("Combo", lastCombo++);
 
             //调整镜头抖动、顿帧参数
             if (lastCombo  == 2)
             {
-                stressReceiver.MaximumTranslationShake = new Vector3(0, 3, 0);
-                traumaInducer.MaximumStress = 0.15f;
-                traumaInducer.duration = 4;
+                //stressReceiver.MaximumTranslationShake = new Vector3(0, 3, 0);
+                //traumaInducer.MaximumStress = 0.15f;
+                //traumaInducer.duration = 4;
             }else if(lastCombo == 3)
             {
-                stressReceiver.MaximumTranslationShake = new Vector3(0, 2, 0);
-                traumaInducer.MaximumStress = 0.15f;
-                traumaInducer.duration = 2;
+                //stressReceiver.MaximumTranslationShake = new Vector3(0, 2, 0);
+                //traumaInducer.MaximumStress = 0.15f;
+                //traumaInducer.duration = 2;
             }
             //播放对应动画
             animatorHandler.PlayTargetAnimation("combo"+lastCombo.ToString(), true);
@@ -46,6 +47,41 @@ public class PlayerAttacker1 : MonoBehaviour
         }
 
         if(lastCombo > 3)
+        {
+            lastCombo = 0;
+        }
+    }
+
+    public void HandleSpecialCombo()
+    {
+        if (inputHandler.comboFlag)
+        {
+            playerManager.RotateToEnemy();
+            animatorHandler.anim.SetBool("canDoCombo", false);
+            animatorHandler.anim.SetBool("canDoSpecialCombo", false);
+            animatorHandler.anim.SetInteger("Combo", lastCombo);
+
+            //调整镜头抖动、顿帧参数
+            if (lastCombo == 2)
+            {
+                stressReceiver.MaximumTranslationShake = new Vector3(2, 2, 0);
+                traumaInducer.MaximumStress = 0.15f;
+                traumaInducer.duration = 3;
+            }
+            else if (lastCombo == 3)
+            {
+                stressReceiver.MaximumTranslationShake = new Vector3(1, 1, 0);
+                traumaInducer.MaximumStress = 0.15f;
+                traumaInducer.duration = 3;
+            }
+            //播放对应动画
+            animatorHandler.PlayTargetAnimation("SpecialAttack" + lastCombo.ToString(), true);
+            //Debug.Log("combo" + lastCombo.ToString());
+
+            lastCombo++;
+        }
+
+        if (lastCombo > 3)
         {
             lastCombo = 0;
         }
@@ -66,10 +102,10 @@ public class PlayerAttacker1 : MonoBehaviour
     {
         playerManager.RotateToEnemy();
         //animatorHandler.anim.SetInteger("Combo", 1);
-        animatorHandler.PlayTargetAnimation("heavyAttack", true);
-        stressReceiver.MaximumTranslationShake = new Vector3(0, 8, 0);
+        animatorHandler.PlayTargetAnimation("SpecialAttack1", true);
+        stressReceiver.MaximumTranslationShake = new Vector3(0, 4, 0);
         traumaInducer.MaximumStress = 0.2f;
-        lastCombo = 1;        
+        lastCombo = 0;        
     }
 
 }

@@ -17,10 +17,6 @@ public class PlayerLocomotion1 : MonoBehaviour
     public new Rigidbody rigidbody;
     public GameObject normalCamera;
 
-    [Header("Ground & Air Detection Stats")]
-    LayerMask ignoreForGroundCheck;
-    public float inAirTimer;
-
     [Header("Movement Stats")]
     [SerializeField]
     float movementSpeed = 5;

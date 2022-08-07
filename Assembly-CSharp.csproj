@@ -61,7 +61,6 @@
     <Compile Include="Assets\Script\CharacterEffectsManager.cs" />
     <Compile Include="Assets\Script\CameraHandler.cs" />
     <Compile Include="Assets\Script\CameraShakeFX\Scripts\TraumaInducer.cs" />
-    <Compile Include="Assets\Script\HealthBar.cs" />
     <Compile Include="Assets\Script\AnimatorController.cs" />
     <Compile Include="Assets\Script\EnemyStats.cs" />
     <Compile Include="Assets\Script\DamageTarget.cs" />

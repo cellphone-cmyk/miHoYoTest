@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SG;
+
 public class PlayerManager1 : MonoBehaviour
 {
     InputController inputHandler;
@@ -17,6 +17,8 @@ public class PlayerManager1 : MonoBehaviour
     [Header("Player Flags")]
     public bool isInteracting;
     public bool canDoCombo;
+    public bool canDoSpecialCombo;
+    public bool isDead;
 
     private void Awake()
     {
@@ -36,14 +38,16 @@ public class PlayerManager1 : MonoBehaviour
         
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
+        canDoSpecialCombo = anim.GetBool("canDoSpecialCombo");
 
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
 
-        SearchNearEenmy();
+        SearchNearEnemy();
+        if (isDead && (anim.GetBool("isDie")==false)) anim.SetBool("isDie", true); ;
     }
 
-    public void SearchNearEenmy()
+    public void SearchNearEnemy()
     {
         colliders = Physics.OverlapSphere(OverlapSpherePlayer.position,SearchRadius,1<<LayerMask.NameToLayer("Enemy"));
         

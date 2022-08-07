@@ -64810,8 +64810,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
+  - time: 0.6666667
     functionName: EnableCombo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0833334
+    functionName: EnableSpecialCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -64819,6 +64826,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.9583334
     functionName: DisableCombo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9583334
+    functionName: DisableSpecialCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

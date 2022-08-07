@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3883720448703411173}
   - component: {fileID: 3883720448703411172}
   - component: {fileID: 3883720448703411195}
-  m_Layer: 0
+  - component: {fileID: 1476868088}
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -81,6 +82,19 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currentHealth: 0
+--- !u!114 &1476868088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883720448703411194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc5c1db3af7d4a4f93d441dd9835f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitFX: {fileID: 1739205390092530, guid: 2078f3597a3daab428fe4f0d849b3243, type: 3}
 --- !u!1 &3883720449227896309
 GameObject:
   m_ObjectHideFlags: 0

@@ -165,6 +165,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UltimateSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f3661ff-e7b2-4138-83bf-9bf9d4931135"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -244,6 +253,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""ResPawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8395f903-573c-4e98-8e5a-3fc9b727bd30"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UltimateSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +280,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_ResPawn = m_PlayerActions.FindAction("ResPawn", throwIfNotFound: true);
+        m_PlayerActions_UltimateSkill = m_PlayerActions.FindAction("UltimateSkill", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -364,6 +385,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_RT;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_ResPawn;
+    private readonly InputAction m_PlayerActions_UltimateSkill;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -372,6 +394,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @ResPawn => m_Wrapper.m_PlayerActions_ResPawn;
+        public InputAction @UltimateSkill => m_Wrapper.m_PlayerActions_UltimateSkill;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -393,6 +416,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ResPawn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnResPawn;
                 @ResPawn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnResPawn;
                 @ResPawn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnResPawn;
+                @UltimateSkill.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnUltimateSkill;
+                @UltimateSkill.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnUltimateSkill;
+                @UltimateSkill.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnUltimateSkill;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -409,6 +435,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ResPawn.started += instance.OnResPawn;
                 @ResPawn.performed += instance.OnResPawn;
                 @ResPawn.canceled += instance.OnResPawn;
+                @UltimateSkill.started += instance.OnUltimateSkill;
+                @UltimateSkill.performed += instance.OnUltimateSkill;
+                @UltimateSkill.canceled += instance.OnUltimateSkill;
             }
         }
     }
@@ -424,5 +453,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRT(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnResPawn(InputAction.CallbackContext context);
+        void OnUltimateSkill(InputAction.CallbackContext context);
     }
 }

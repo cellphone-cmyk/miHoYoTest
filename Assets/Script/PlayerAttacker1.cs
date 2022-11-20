@@ -32,18 +32,19 @@ public class PlayerAttacker1 : MonoBehaviour
             //调整镜头抖动、顿帧参数
             if (lastCombo  == 2)
             {
-                //stressReceiver.MaximumTranslationShake = new Vector3(0, 3, 0);
-                //traumaInducer.MaximumStress = 0.15f;
-                //traumaInducer.duration = 4;
-            }else if(lastCombo == 3)
+                stressReceiver.MaximumTranslationShake = new Vector3(0, 3, 0);
+                traumaInducer.MaximumStress = 0.15f;
+                traumaInducer.duration = 4;
+            }
+            else if(lastCombo == 3)
             {
-                //stressReceiver.MaximumTranslationShake = new Vector3(0, 2, 0);
-                //traumaInducer.MaximumStress = 0.15f;
-                //traumaInducer.duration = 2;
+                stressReceiver.MaximumTranslationShake = new Vector3(0, 2, 0);
+                traumaInducer.MaximumStress = 0.15f;
+                traumaInducer.duration = 2;
             }
             //播放对应动画
             animatorHandler.PlayTargetAnimation("combo"+lastCombo.ToString(), true);
-            //Debug.Log("combo" + lastCombo.ToString());
+            Debug.Log("combo" + lastCombo.ToString());
         }
 
         if(lastCombo > 3)
@@ -64,7 +65,7 @@ public class PlayerAttacker1 : MonoBehaviour
             //调整镜头抖动、顿帧参数
             if (lastCombo == 2)
             {
-                stressReceiver.MaximumTranslationShake = new Vector3(2, 2, 0);
+                stressReceiver.MaximumTranslationShake = new Vector3(1, 1, 0);
                 traumaInducer.MaximumStress = 0.15f;
                 traumaInducer.duration = 3;
             }
@@ -103,9 +104,19 @@ public class PlayerAttacker1 : MonoBehaviour
         playerManager.RotateToEnemy();
         //animatorHandler.anim.SetInteger("Combo", 1);
         animatorHandler.PlayTargetAnimation("SpecialAttack1", true);
-        stressReceiver.MaximumTranslationShake = new Vector3(0, 4, 0);
-        traumaInducer.MaximumStress = 0.2f;
+        stressReceiver.MaximumTranslationShake = new Vector3(0, 2, 0);
+        traumaInducer.MaximumStress = 0.15f;
         lastCombo = 0;        
+    }
+
+    public void HandleUltimateAttack(float delta)
+    {
+        playerManager.AttackRange = 10;
+        playerManager.SearchNearEnemy();
+        playerManager.RotateToEnemy();
+        animatorHandler.PlayTargetAnimation("taunt", true);
+        //animatorHandler.anim.SetBool("isUltimate",true);
+        playerManager.AttackRange = 2;
     }
 
 }

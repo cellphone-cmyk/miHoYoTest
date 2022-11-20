@@ -83,7 +83,10 @@ public class AnimatorController : MonoBehaviour
     {
         anim.applyRootMotion = isInteracting;
         anim.SetBool("isInteracting", isInteracting);
-        anim.CrossFade(targetAnim, 0.2f);
+        //anim.CrossFade(targetAnim, 0.2f);
+        anim.Play(targetAnim);
+        //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(1);
+        //Debug.Log(stateInfo.IsName("comboo2"));
     }
 
     //强行锁isInteracting,防止出错

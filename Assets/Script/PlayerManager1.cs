@@ -12,13 +12,16 @@ public class PlayerManager1 : MonoBehaviour
     [Header("Search Distance")]
     public Transform OverlapSpherePlayer;
     public float SearchRadius;
+    public float AttackRange;
     public Collider[] colliders;
+    public Collider[] s_colliders;
 
     [Header("Player Flags")]
     public bool isInteracting;
     public bool canDoCombo;
     public bool canDoSpecialCombo;
     public bool isDead;
+    public bool isUltimate;
 
     private void Awake()
     {
@@ -39,19 +42,24 @@ public class PlayerManager1 : MonoBehaviour
         isInteracting = anim.GetBool("isInteracting");
         canDoCombo = anim.GetBool("canDoCombo");
         canDoSpecialCombo = anim.GetBool("canDoSpecialCombo");
+        isUltimate = anim.GetBool("isUltimate");
 
         inputHandler.TickInput(delta);
         playerLocomotion.HandleMovement(delta);
 
         SearchNearEnemy();
-        if (isDead && (anim.GetBool("isDie")==false)) anim.SetBool("isDie", true); ;
+        if (isDead && (anim.GetBool("isDie")==false)) anim.SetBool("isDie", true);
     }
 
     public void SearchNearEnemy()
     {
-        colliders = Physics.OverlapSphere(OverlapSpherePlayer.position,SearchRadius,1<<LayerMask.NameToLayer("Enemy"));
-        
+        colliders = Physics.OverlapSphere(OverlapSpherePlayer.position,AttackRange,1<<LayerMask.NameToLayer("Enemy"));
+        s_colliders = Physics.OverlapSphere(OverlapSpherePlayer.position, SearchRadius, 1 << LayerMask.NameToLayer("Enemy"));
+
         if (colliders.Length <= 0) return;
+        if (s_colliders.Length <= 0) return;
+        cameraHandler.aimTarget = s_colliders[0].gameObject.transform.Find("EnemyLockOnTransform");
+
     }
 
     public void RotateToEnemy()
@@ -73,6 +81,7 @@ public class PlayerManager1 : MonoBehaviour
     {
         inputHandler.rb_Input = false;
         inputHandler.rt_Input = false;
+        inputHandler.ultimate_skill = false;
 
         if (cameraHandler != null)
         {

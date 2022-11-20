@@ -40,7 +40,6 @@ public class PlayerLocomotion1 : MonoBehaviour
 
     #region Movement
     Vector3 normalVector;
-    Vector3 targetPosition;
 
     private void HandleRotation(float delta)
     {
@@ -84,7 +83,6 @@ public class PlayerLocomotion1 : MonoBehaviour
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         rigidbody.velocity = projectedVelocity;
-        //Debug.Log("velocity"+rigidbody.velocity);
 
         animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
 

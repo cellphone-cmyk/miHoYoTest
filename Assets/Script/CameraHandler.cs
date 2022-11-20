@@ -7,13 +7,8 @@ public class CameraHandler : MonoBehaviour
     public float topClamp;		//最大角度
     public float bottomClamp;	//最小角度
     public float pivotSpeed; //纵向速度
-    public Transform cameraTransform;
-
-    Vector3 cameraPosition;
-        
-        
-    //new
-    public GameObject aimTarget;
+    public Transform cameraTransform;        
+    public Transform aimTarget;
     public bool isAiming;
         
     private void Start()
@@ -33,14 +28,13 @@ public class CameraHandler : MonoBehaviour
             //cameraPosition.z = Mathf.Lerp(cameraTransform.localPosition.z,aimTarget.transform.localPosition.z, delta/0.2f );
                 
             this.transform.LookAt(aimTarget.transform);
-            _targetPitch = ClampAngle(this.transform.eulerAngles.x, 60, 10);
+            _targetPitch = ClampAngle(this.transform.eulerAngles.x, 60, 0);
             this.transform.eulerAngles = new Vector3(_targetPitch, this.transform.eulerAngles.y,0.0f);
         }
         else
         {
             // input_look = InputDefine.Instance.input_look;
             var input_look = new Vector2(mouseX, mouseY);
-            //后续考虑加入手柄输入的支持
             if(input_look.sqrMagnitude >= 0.01f)
             {
                 _targetYaw += input_look.x;

@@ -53970,15 +53970,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.29166666
-    functionName: EnableDamageCollider
+  - time: 0.25
+    functionName: DisableIteracting
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
-    functionName: DisableIteracting
+  - time: 0.29166666
+    functionName: EnableDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -53998,7 +53998,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0.6666667
     functionName: EnableSpecialCombo
     data: 
     objectReferenceParameter: {fileID: 0}

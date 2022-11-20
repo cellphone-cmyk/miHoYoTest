@@ -17,10 +17,12 @@ public class InputController : MonoBehaviour
     public bool lockOnInput;
     public bool isInteracting;
     public bool isDead;
+    public bool ultimate_skill;
 
     public bool comboFlag;
     public bool SpecialComboFlag;
     public bool lockOnFlag;
+    public bool ultimateSkillFlag;
 
     PlayerControls inputActions;
     CameraHandler cameraHandler;
@@ -49,6 +51,7 @@ public class InputController : MonoBehaviour
             inputActions.PlayerActions.RT.performed += i => rt_Input = true;
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             inputActions.PlayerActions.ResPawn.performed += i => isDead = true;
+            inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
         }
 
         inputActions.Enable();
@@ -80,6 +83,7 @@ public class InputController : MonoBehaviour
     {
         inputActions.PlayerActions.RB.performed += i => rb_Input = true;
         inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+        inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
 
         if (rb_Input)
         {
@@ -114,6 +118,13 @@ public class InputController : MonoBehaviour
             if (playerManager.canDoSpecialCombo)
                 return;
             playerAttacker.HandleHeavyAttack();
+        }
+
+        if (ultimate_skill)
+        {
+            if (playerManager.isInteracting)
+                return;
+            playerAttacker.HandleUltimateAttack(delta);
         }
     }
 

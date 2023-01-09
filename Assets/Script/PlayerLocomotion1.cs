@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLocomotion1 : MonoBehaviour
 {
     PlayerManager1 playerManager;
-    Transform cameraObject;
+    public Transform cameraObject;
     InputController inputHandler;
     public Vector3 moveDirection;
 
@@ -89,6 +89,23 @@ public class PlayerLocomotion1 : MonoBehaviour
         if (animatorHandler.canRotate)
         {
             HandleRotation(delta);
+        }
+    }
+
+    public void HandleRollingAndSprinting(float delta)
+    {
+        if (animatorHandler.anim.GetBool("isInteracting"))
+            return;
+        if (inputHandler.dodgeFlag)
+        {
+            moveDirection = cameraObject.forward * inputHandler.vertical;
+            moveDirection += cameraObject.right * inputHandler.horizontal;
+            
+            if(inputHandler.moveAmount > 0)
+            {
+                animatorHandler.PlayTargetAnimation("Rolling",true);
+                moveDirection.y = 0;
+            }
         }
     }
     #endregion

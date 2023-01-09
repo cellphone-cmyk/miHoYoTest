@@ -43,7 +43,8 @@ public class PlayerAttacker1 : MonoBehaviour
                 traumaInducer.duration = 2;
             }
             //播放对应动画
-            animatorHandler.PlayTargetAnimation("combo"+lastCombo.ToString(), true);
+            //animatorHandler.PlayTargetAnimation("combo"+lastCombo.ToString(), true);
+            animatorHandler.PlayTargetAnimation($"combo{lastCombo}", true);
             Debug.Log("combo" + lastCombo.ToString());
         }
 

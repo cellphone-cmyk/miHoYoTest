@@ -22,6 +22,7 @@ public class PlayerManager1 : MonoBehaviour
     public bool canDoSpecialCombo;
     public bool isDead;
     public bool isUltimate;
+    public bool isDodge;
 
     private void Awake()
     {
@@ -44,11 +45,12 @@ public class PlayerManager1 : MonoBehaviour
         canDoSpecialCombo = anim.GetBool("canDoSpecialCombo");
         isUltimate = anim.GetBool("isUltimate");
 
-        inputHandler.TickInput(delta);
+        inputHandler.TickInput(delta); //ªÒ»° ‰»Î
         playerLocomotion.HandleMovement(delta);
 
         SearchNearEnemy();
         if (isDead && (anim.GetBool("isDie")==false)) anim.SetBool("isDie", true);
+
     }
 
     public void SearchNearEnemy()
@@ -82,6 +84,7 @@ public class PlayerManager1 : MonoBehaviour
         inputHandler.rb_Input = false;
         inputHandler.rt_Input = false;
         inputHandler.ultimate_skill = false;
+        inputHandler.LshiftInput = false;
 
         if (cameraHandler != null)
         {

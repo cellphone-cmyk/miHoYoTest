@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44740300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1379247315577582, guid: 68813e3f18422044094750f43ff6381b, type: 3}
+  m_PrefabInstance: {fileID: 220757293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &44740301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4082602500180480, guid: 68813e3f18422044094750f43ff6381b, type: 3}
+  m_PrefabInstance: {fileID: 220757293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &44740302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44740300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1a76312e3e5684f8081bb7d17e7bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOverride: {fileID: 966484427}
+  isLeftHandSlot: 1
+  isRightHandSlot: 0
+  currentWeaponModel: {fileID: 0}
 --- !u!1001 &220757293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +303,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &405766216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227298457137390, guid: 68813e3f18422044094750f43ff6381b, type: 3}
+  m_PrefabInstance: {fileID: 220757293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &405766217 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4609404461459502, guid: 68813e3f18422044094750f43ff6381b, type: 3}
+  m_PrefabInstance: {fileID: 220757293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &405766218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405766216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1a76312e3e5684f8081bb7d17e7bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOverride: {fileID: 1466749048}
+  isLeftHandSlot: 0
+  isRightHandSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &430690760
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +344,8 @@ GameObject:
   - component: {fileID: 430690766}
   - component: {fileID: 430690765}
   - component: {fileID: 430690764}
+  - component: {fileID: 430690768}
+  - component: {fileID: 430690769}
   m_Layer: 11
   m_Name: MagicKnight
   m_TagString: Enemy
@@ -381,6 +435,7 @@ MonoBehaviour:
   canDoSpecialCombo: 0
   isDead: 0
   isUltimate: 0
+  isDodge: 0
 --- !u!114 &430690766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c6df364e44d3b4e95f3715dd8b5168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraObject: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
   animatorHandler: {fileID: 0}
@@ -425,10 +481,38 @@ MonoBehaviour:
   isInteracting: 0
   isDead: 0
   ultimate_skill: 0
+  LshiftInput: 0
   comboFlag: 0
   SpecialComboFlag: 0
   lockOnFlag: 0
   ultimateSkillFlag: 0
+  dodgeFlag: 0
+--- !u!114 &430690768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430690760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcb131371a0a254f859c1d112abab53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &430690769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430690760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85af53e02d6554448074c5bc209927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWeapon: {fileID: 11400000, guid: 20aafd411dc47ea4f9f53e454f266548, type: 2}
+  leftWeapon: {fileID: 0}
 --- !u!1001 &789352875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -580,6 +664,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &966484426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966484427}
+  m_Layer: 0
+  m_Name: Left_Hand_Override
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966484427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966484426}
+  m_LocalRotation: {x: -0.08969245, y: -0.99535304, z: 0.03099442, w: -0.016339984}
+  m_LocalPosition: {x: -1.9, y: -7.3, z: 3.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 44740301}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -183.706, y: -1.5490112, z: -169.752}
+--- !u!1 &1466749047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466749048}
+  m_Layer: 0
+  m_Name: Right_Hand_Override
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466749048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466749047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 405766217}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518435025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1608198229272546, guid: 68813e3f18422044094750f43ff6381b, type: 3}
@@ -599,6 +745,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   canRotate: 1
+--- !u!114 &1518435029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518435025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d384d48e3722ada499a631e5b0638786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1608137518
 PrefabInstance:
   m_ObjectHideFlags: 0

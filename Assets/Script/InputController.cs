@@ -18,16 +18,19 @@ public class InputController : MonoBehaviour
     public bool isInteracting;
     public bool isDead;
     public bool ultimate_skill;
+    public bool LshiftInput;
 
     public bool comboFlag;
     public bool SpecialComboFlag;
     public bool lockOnFlag;
     public bool ultimateSkillFlag;
+    public bool dodgeFlag;
 
     PlayerControls inputActions;
     CameraHandler cameraHandler;
     PlayerManager1 playerManager;
     PlayerAttacker1 playerAttacker;
+    PlayerAvoider playerAvoider;
 
     Vector2 movementInput;
     Vector2 cameraInput;
@@ -38,6 +41,7 @@ public class InputController : MonoBehaviour
         cameraHandler = GetComponentInChildren<CameraHandler>();
         playerManager = GetComponent<PlayerManager1>();
         playerAttacker = GetComponent<PlayerAttacker1>();
+        playerAvoider = GetComponent<PlayerAvoider>();
     }
 
     public void OnEnable()
@@ -52,6 +56,7 @@ public class InputController : MonoBehaviour
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             inputActions.PlayerActions.ResPawn.performed += i => isDead = true;
             inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
+            inputActions.PlayerActions.Dodge.performed += i => LshiftInput = true;
         }
 
         inputActions.Enable();
@@ -68,6 +73,7 @@ public class InputController : MonoBehaviour
         HandleAttackInput(delta);
         HandleLockOnInput();
         HandleDeath();
+        HandleDodgeInput(delta);
     }
 
     private void MoveInput(float delta)
@@ -77,6 +83,18 @@ public class InputController : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+    }
+
+    public void HandleDodgeInput(float delta)
+    {
+        if (LshiftInput)
+        {
+            if (playerManager.isInteracting)
+                return;
+            dodgeFlag = true;
+            playerAvoider.HandleAvoid();
+            dodgeFlag = false;
+        }
     }
 
     private void HandleAttackInput(float delta)
@@ -151,4 +169,5 @@ public class InputController : MonoBehaviour
             playerManager.isDead = true;
         }
     }
+
 }

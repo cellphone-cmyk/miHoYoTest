@@ -19,24 +19,33 @@ public class PlayerAvoider : MonoBehaviour
         playerManager = GetComponent<PlayerManager1>();
         playerLocomotion = GetComponent<PlayerLocomotion1>();
     }
-    public void HandleAvoid()
+    public void HandleAvoid(bool isInteracting)
     {
         if (inputHandler.dodgeFlag)
         {
-            if (animatorHandler.anim.GetBool("isInteracting"))
-                return;
+                
 
             playerLocomotion.moveDirection = playerLocomotion.cameraObject.forward * inputHandler.vertical;
             playerLocomotion.moveDirection += playerLocomotion.cameraObject.right * inputHandler.horizontal; // ·­¹ö·½Ïò
 
             if (inputHandler.moveAmount > 0)
             {
+                if (animatorHandler.anim.GetBool("isInteracting"))
+                {
+                    animatorHandler.nextAnim = "Avoid_F";
+                    return;
+                }
                 animatorHandler.PlayTargetAnimation("Avoid_F", true);
                 playerLocomotion.moveDirection.y = 0;
 
             }
             else
             {
+                if (animatorHandler.anim.GetBool("isInteracting"))
+                {
+                    animatorHandler.nextAnim = "Avoid_B";
+                    return;
+                }
                 animatorHandler.PlayTargetAnimation("Avoid_B", true);
                 playerLocomotion.moveDirection.y = 0;
 

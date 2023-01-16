@@ -12,6 +12,7 @@ public class AnimatorController : MonoBehaviour
     int vertical;
     int horizontal;
     public bool canRotate;
+    public string nextAnim;
 
 
     public void Initialize()
@@ -84,7 +85,15 @@ public class AnimatorController : MonoBehaviour
         anim.applyRootMotion = isInteracting;
         anim.SetBool("isInteracting", isInteracting);
         //anim.CrossFade(targetAnim, 0.2f);
-        anim.Play(targetAnim);
+        if(nextAnim == null) //如果下一必须执行的动画不存在则执行当前anim
+        {
+            anim.Play(targetAnim);
+        }
+        else
+        {
+            anim.Play(nextAnim);
+            nextAnim = null; //执行完重置
+        }
         //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(1);
         //Debug.Log(stateInfo.IsName("comboo2"));
     }
@@ -148,4 +157,36 @@ public class AnimatorController : MonoBehaviour
 
     }
 
+    public void BufferProtector(float delta)
+    {
+        // 缓存保护：在命令/对应动画执行中，在动画开始 -> 缓存保护时间段，同样的命令不缓存，以免玩家快速连续点击的时候马上又缓存了一个命令，造成不受控制的感觉
+        anim.SetBool("isInteracting", true);
+    }
+
+    public void EarlyCancel(float delta)
+    {
+        //提前取消：一些比较轻的攻击，玩家的期待是在前摇阶段可以被闪避等动作取消，Moba游戏攻击/技能前摇靠移动/停止指令取消，可以用来骗招，动画开始 -> 提前取消的时间轴标记了这一段时间
+    }
+
+    public void EarlistExit()
+    {
+        //最早退出：当动画播放到最早退出时间，可以开始跳转到已经缓存了的新动画
+        //在缓存保护->最早退出时间段，玩家的输入命令可以缓存。
+        //缓存保护->最早退出时间段，原则上可以晚于动画结束时间，以创造类似“内置冷却”的效果
+
+    }
+
+    public void LatestExit()
+    {
+        //最迟退出：同样用来标记一段辅助输入的时间，在最早退出->最迟退出的时间追加指令，连技不会中断
+    }
+
+    public void RestCommand() {
+        //命令重置：标记连技中断的时间，一般此时动画会开始向待机动作跳转
+        //命令重置->动作结束阶段，输入命令，则连技中断。如果连技X->X对应动画A->B， 在X命令重置后才追加X指令，只能触发A->A。
+        //最迟退出->命令重置时间段，可以不处理，也可以开启另外一个缓存，在命令重置时间点后执行重置过的连技。
+        //最迟退出->命令重置时间段也可以做成特殊跳转，实现A · A这样的等待攻击，在序列技表中也比较常见。
+        //如果一节等待不够还可以加多节，常见于蓄力到不同阶段退出的指令技。
+        //命令重置时间原则上可以位于动画结束之后，可以实现多段翻滚的内置计数，攻击之后移动一段时间再攻击可以接上之前的连击这样的效果
+    }
 }

@@ -58,7 +58,10 @@ public class InputController : MonoBehaviour
             inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
             inputActions.PlayerActions.Dodge.performed += i => LshiftInput = true;
         }
-
+        else
+        {
+            Debug.Log("" + inputActions.ToString());
+        }
         inputActions.Enable();
     }
 
@@ -67,16 +70,16 @@ public class InputController : MonoBehaviour
         inputActions.Disable();
     }
 
-    public void TickInput(float delta)
+    public void TickInput(float delta,bool isInteracting) //isInteracting：在此变量false之前，禁止其他播放其他动画，但期间可以缓存命令
     {
-        MoveInput(delta);
-        HandleAttackInput(delta);
+        MoveInput(delta,isInteracting);
+        HandleAttackInput(delta, isInteracting);
         HandleLockOnInput();
         HandleDeath();
-        HandleDodgeInput(delta);
+        HandleDodgeInput(delta, isInteracting);
     }
 
-    private void MoveInput(float delta)
+    private void MoveInput(float delta, bool isInteracting)
     {
         horizontal = movementInput.x;
         vertical = movementInput.y;
@@ -85,19 +88,19 @@ public class InputController : MonoBehaviour
         mouseY = cameraInput.y;
     }
 
-    public void HandleDodgeInput(float delta)
+    public void HandleDodgeInput(float delta, bool isInteracting)
     {
         if (LshiftInput)
         {
             if (playerManager.isInteracting)
                 return;
             dodgeFlag = true;
-            playerAvoider.HandleAvoid();
+            playerAvoider.HandleAvoid(isInteracting);
             dodgeFlag = false;
         }
     }
 
-    private void HandleAttackInput(float delta)
+    private void HandleAttackInput(float delta, bool isInteracting)
     {
         inputActions.PlayerActions.RB.performed += i => rb_Input = true;
         inputActions.PlayerActions.RT.performed += i => rt_Input = true;
@@ -114,11 +117,15 @@ public class InputController : MonoBehaviour
             else
             {
                 if (playerManager.isInteracting)
+                {
+                    playerAttacker.HandleLightAttack(isInteracting);
                     return;
+                }
+                    
 
                 if (playerManager.canDoCombo)
                     return;
-                playerAttacker.HandleLightAttack();
+                playerAttacker.HandleLightAttack(isInteracting);
             }
         }
 

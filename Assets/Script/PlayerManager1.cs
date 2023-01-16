@@ -24,6 +24,12 @@ public class PlayerManager1 : MonoBehaviour
     public bool isUltimate;
     public bool isDodge;
 
+    [Header("Input Record")]
+    public bool forbidInput;
+    public float currentInputTime = 0;
+    public float lastInputTime = 0;
+    public string nextInput;
+
     private void Awake()
     {
         cameraHandler = this.GetComponentInChildren<CameraHandler>();
@@ -44,13 +50,39 @@ public class PlayerManager1 : MonoBehaviour
         canDoCombo = anim.GetBool("canDoCombo");
         canDoSpecialCombo = anim.GetBool("canDoSpecialCombo");
         isUltimate = anim.GetBool("isUltimate");
+        forbidInput = anim.GetBool("forbidInput");
 
-        inputHandler.TickInput(delta); //获取输入
-        playerLocomotion.HandleMovement(delta);
+        if (forbidInput == false) //缓存保护期间不接受任何输入
+        {
+            if (isInteracting)
+            {
+                inputHandler.TickInput(delta, isInteracting); //缓存命令
+            }
+            else
+            {
+                inputHandler.TickInput(delta, isInteracting);  //执行输入后的行为
+                playerLocomotion.HandleMovement(delta);
+            }
 
-        SearchNearEnemy();
+        }
+          
+        SearchNearEnemy(); //搜索附近的敌人
         if (isDead && (anim.GetBool("isDie")==false)) anim.SetBool("isDie", true);
 
+        if (inputHandler.rb_Input == true) //获得输入
+        {
+            currentInputTime = Time.time; //获取当前输入的时间
+            if (currentInputTime - lastInputTime > 1) //当前输入的时间 - 上次输入的时间 是否 > 缓存保护/提前取消/最早退出时间
+            {
+                Debug.Log("combo1 J is inputing"); // 执行对应的语句跳转动画或什么都不做或保存命令
+                lastInputTime = currentInputTime; //当前的输入时间变成了上一次输入的时间。
+            } 
+            else
+            {
+                Debug.Log("combo2 J++ is inputing");
+                lastInputTime = currentInputTime;
+            }
+        }
     }
 
     public void SearchNearEnemy()

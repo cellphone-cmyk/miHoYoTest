@@ -89,9 +89,13 @@ public class PlayerAttacker1 : MonoBehaviour
         }
     }
 
-    public void HandleLightAttack()
+    public void HandleLightAttack(bool isInteracting)
     {
         //animatorHandler.anim.SetInteger("Combo",1);
+        if (isInteracting)
+        {
+
+        }
         playerManager.RotateToEnemy();
         animatorHandler.PlayTargetAnimation("combo1", true);
         stressReceiver.MaximumTranslationShake = new Vector3(2,0,0);

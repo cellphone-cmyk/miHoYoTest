@@ -58,10 +58,6 @@ public class InputController : MonoBehaviour
             inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
             inputActions.PlayerActions.Dodge.performed += i => LshiftInput = true;
         }
-        else
-        {
-            Debug.Log("" + inputActions.ToString());
-        }
         inputActions.Enable();
     }
 
@@ -70,8 +66,28 @@ public class InputController : MonoBehaviour
         inputActions.Disable();
     }
 
-    public void TickInput(float delta,bool isInteracting) //isInteracting：在此变量false之前，禁止其他播放其他动画，但期间可以缓存命令
+    public void TickInput(float delta,bool isInteracting) //isInteracting：在此变量false之前，禁止其他播放其他动画，但期间如果forbidInput不为True可以缓存命令
     {
+        if (playerManager.nextAction != 0 && playerManager.cancel)
+        {
+            switch (playerManager.nextAction)
+            {
+                case 1:
+                    LshiftInput = true;
+                    HandleDodgeInput(delta, isInteracting);
+                    break;
+                case 2:
+                    rb_Input = true;
+                    HandleAttackInput(delta,isInteracting);
+                    break;
+                case 3:
+                    rt_Input = true;
+                    HandleAttackInput(delta,isInteracting);
+                    break;
+            }
+            playerManager.nextAction = 0;
+        }
+        else
         MoveInput(delta,isInteracting);
         HandleAttackInput(delta, isInteracting);
         HandleLockOnInput();
@@ -93,7 +109,10 @@ public class InputController : MonoBehaviour
         if (LshiftInput)
         {
             if (playerManager.isInteracting)
+            {
+                playerAvoider.HandleAvoid(isInteracting);
                 return;
+            }               
             dodgeFlag = true;
             playerAvoider.HandleAvoid(isInteracting);
             dodgeFlag = false;
@@ -102,6 +121,7 @@ public class InputController : MonoBehaviour
 
     private void HandleAttackInput(float delta, bool isInteracting)
     {
+        //输入白名单：handle期间接受输入的指令
         inputActions.PlayerActions.RB.performed += i => rb_Input = true;
         inputActions.PlayerActions.RT.performed += i => rt_Input = true;
         inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
@@ -126,6 +146,8 @@ public class InputController : MonoBehaviour
                 if (playerManager.canDoCombo)
                     return;
                 playerAttacker.HandleLightAttack(isInteracting);
+                return;
+                Debug.Log("11");
             }
         }
 
@@ -142,7 +164,7 @@ public class InputController : MonoBehaviour
 
             if (playerManager.canDoSpecialCombo)
                 return;
-            playerAttacker.HandleHeavyAttack();
+            playerAttacker.HandleHeavyAttack(isInteracting);
         }
 
         if (ultimate_skill)

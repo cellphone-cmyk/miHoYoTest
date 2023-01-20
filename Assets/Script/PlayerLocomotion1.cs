@@ -66,8 +66,12 @@ public class PlayerLocomotion1 : MonoBehaviour
     public void HandleMovement(float delta)
     {
 
-        if (playerManager.isInteracting)
+        //如果动画处于交互状态，需要缓存数据然后统一输出
+        if (playerManager.isInteracting || playerManager.nextAction != 0)
+        {
             return;
+        }
+
 
         moveDirection = cameraObject.forward * inputHandler.vertical;
         moveDirection += cameraObject.right * inputHandler.horizontal;
@@ -76,20 +80,31 @@ public class PlayerLocomotion1 : MonoBehaviour
             
         float speed = movementSpeed;
 
+
         if (inputHandler.moveAmount > 0.5)
         {
             moveDirection *= speed;
-        }   
-
-        Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-        rigidbody.velocity = projectedVelocity;
-
-        animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
-
-        if (animatorHandler.canRotate)
-        {
-            HandleRotation(delta);
         }
+
+        if (!playerManager.forbidMovement)
+        {
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+            rigidbody.velocity = projectedVelocity;
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+            if (animatorHandler.canRotate)
+            {
+                HandleRotation(delta);
+            }
+        }
+        else
+        {
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, Vector3.zero);
+            rigidbody.velocity = projectedVelocity;
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+        }
+
+
+
     }
 
     public void HandleRollingAndSprinting(float delta)

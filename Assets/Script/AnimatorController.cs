@@ -82,18 +82,13 @@ public class AnimatorController : MonoBehaviour
 
     public void PlayTargetAnimation(string targetAnim, bool isInteracting)
     {
-        anim.applyRootMotion = isInteracting;
+        //anim.applyRootMotion = isInteracting;
+        //canRotate = false;
         anim.SetBool("isInteracting", isInteracting);
-        //anim.CrossFade(targetAnim, 0.2f);
-        if(nextAnim == null) //如果下一必须执行的动画不存在则执行当前anim
-        {
-            anim.Play(targetAnim);
-        }
-        else
-        {
-            anim.Play(nextAnim);
-            nextAnim = null; //执行完重置
-        }
+        anim.SetBool("forbidInput",true);
+        anim.SetBool("forbidMovement",true);
+        anim.CrossFade(targetAnim, 0.2f);
+        //anim.Play(targetAnim);
         //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(1);
         //Debug.Log(stateInfo.IsName("comboo2"));
     }
@@ -160,11 +155,13 @@ public class AnimatorController : MonoBehaviour
     public void BufferProtector(float delta)
     {
         // 缓存保护：在命令/对应动画执行中，在动画开始 -> 缓存保护时间段，同样的命令不缓存，以免玩家快速连续点击的时候马上又缓存了一个命令，造成不受控制的感觉
-        anim.SetBool("isInteracting", true);
+        anim.SetBool("forbidInput", false);
     }
 
     public void EarlyCancel(float delta)
     {
+        anim.SetBool("isInteracting",false);
+        anim.SetBool("cancel",true);
         //提前取消：一些比较轻的攻击，玩家的期待是在前摇阶段可以被闪避等动作取消，Moba游戏攻击/技能前摇靠移动/停止指令取消，可以用来骗招，动画开始 -> 提前取消的时间轴标记了这一段时间
     }
 
@@ -173,12 +170,18 @@ public class AnimatorController : MonoBehaviour
         //最早退出：当动画播放到最早退出时间，可以开始跳转到已经缓存了的新动画
         //在缓存保护->最早退出时间段，玩家的输入命令可以缓存。
         //缓存保护->最早退出时间段，原则上可以晚于动画结束时间，以创造类似“内置冷却”的效果
-
+        anim.SetBool("isInteracting", false);
+        anim.SetBool("cancel", true);
+        anim.SetBool("forbidMovement", false);
+        //playerLocomotion.moveDirection.y = 0;
     }
 
     public void LatestExit()
-    {
+    {       
         //最迟退出：同样用来标记一段辅助输入的时间，在最早退出->最迟退出的时间追加指令，连技不会中断
+        //canDoFlag = false;
+        anim.SetBool("canDoCombo", false);
+
     }
 
     public void RestCommand() {

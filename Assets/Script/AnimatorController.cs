@@ -136,9 +136,9 @@ public class AnimatorController : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        if (playerManager.isInteracting == false)
-            return;
-
+        //if (playerManager.isInteracting == false)
+        //    return;
+      
         float delta = Time.deltaTime;
         if (delta == 0) return;
         playerLocomotion.rigidbody.drag = 0;
@@ -156,12 +156,14 @@ public class AnimatorController : MonoBehaviour
     {
         // 缓存保护：在命令/对应动画执行中，在动画开始 -> 缓存保护时间段，同样的命令不缓存，以免玩家快速连续点击的时候马上又缓存了一个命令，造成不受控制的感觉
         anim.SetBool("forbidInput", false);
+        canRotate = false;
     }
 
     public void EarlyCancel(float delta)
     {
         anim.SetBool("isInteracting",false);
         anim.SetBool("cancel",true);
+        canRotate = true;
         //提前取消：一些比较轻的攻击，玩家的期待是在前摇阶段可以被闪避等动作取消，Moba游戏攻击/技能前摇靠移动/停止指令取消，可以用来骗招，动画开始 -> 提前取消的时间轴标记了这一段时间
     }
 
@@ -173,6 +175,7 @@ public class AnimatorController : MonoBehaviour
         anim.SetBool("isInteracting", false);
         anim.SetBool("cancel", true);
         anim.SetBool("forbidMovement", false);
+        canRotate = true;
         //playerLocomotion.moveDirection.y = 0;
     }
 
@@ -181,7 +184,7 @@ public class AnimatorController : MonoBehaviour
         //最迟退出：同样用来标记一段辅助输入的时间，在最早退出->最迟退出的时间追加指令，连技不会中断
         //canDoFlag = false;
         anim.SetBool("canDoCombo", false);
-
+        canRotate = true;
     }
 
     public void RestCommand() {
@@ -191,5 +194,10 @@ public class AnimatorController : MonoBehaviour
         //最迟退出->命令重置时间段也可以做成特殊跳转，实现A · A这样的等待攻击，在序列技表中也比较常见。
         //如果一节等待不够还可以加多节，常见于蓄力到不同阶段退出的指令技。
         //命令重置时间原则上可以位于动画结束之后，可以实现多段翻滚的内置计数，攻击之后移动一段时间再攻击可以接上之前的连击这样的效果
+    }
+
+    public void LockAll()
+    {
+        //关闭所有输入，用于过场动画，处决动画，必杀动画等
     }
 }

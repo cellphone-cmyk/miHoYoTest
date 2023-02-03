@@ -122,9 +122,13 @@ public class InputController : MonoBehaviour
     private void HandleAttackInput(float delta, bool isInteracting)
     {
         //输入白名单：handle期间接受输入的指令
-        inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-        inputActions.PlayerActions.RT.performed += i => rt_Input = true;
-        inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
+        //if (!playerManager.forbidInput)
+        //{
+        //    inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+        //    inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+        //    inputActions.PlayerActions.UltimateSkill.performed += i => ultimate_skill = true;
+        //}
+
 
         if (rb_Input)
         {
@@ -147,7 +151,6 @@ public class InputController : MonoBehaviour
                     return;
                 playerAttacker.HandleLightAttack(isInteracting);
                 return;
-                Debug.Log("11");
             }
         }
 

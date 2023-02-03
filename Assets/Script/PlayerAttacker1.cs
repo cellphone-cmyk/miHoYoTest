@@ -50,7 +50,7 @@ public class PlayerAttacker1 : MonoBehaviour
             //播放对应动画
             //animatorHandler.PlayTargetAnimation("combo"+lastCombo.ToString(), true);
             animatorHandler.PlayTargetAnimation($"combo{lastCombo}", true);
-            Debug.Log("combo" + lastCombo.ToString());
+            //Debug.Log("combo" + lastCombo.ToString());
         }
 
         if(lastCombo > 3)

@@ -27,6 +27,8 @@ public class PlayerAvoider : MonoBehaviour
     }
     public void HandleAvoid(bool isInteracting)
     {
+        //允许转向
+        //animatorHandler.canRotate = true;
         //正常获取移动向量
         moveDirection = playerLocomotion.cameraObject.forward * inputHandler.vertical;
         moveDirection += playerLocomotion.cameraObject.right * inputHandler.horizontal;
@@ -46,7 +48,7 @@ public class PlayerAvoider : MonoBehaviour
         if (inputHandler.dodgeFlag)
         {
             playerLocomotion.moveDirection = moveDirection; // 翻滚方向
-
+            
             if (moveAmount > 0)
             {
                 animatorHandler.PlayTargetAnimation("Avoid_F", true);

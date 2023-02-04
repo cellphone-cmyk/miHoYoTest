@@ -87,8 +87,12 @@ public class AnimatorController : MonoBehaviour
         anim.SetBool("isInteracting", isInteracting);
         anim.SetBool("forbidInput",true);
         anim.SetBool("forbidMovement",true);
+        if(targetAnim == "Avoid_B")
+        {
+            anim.Play(targetAnim);
+        }else
         anim.CrossFade(targetAnim, 0.2f);
-        //anim.Play(targetAnim);
+        
         //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(1);
         //Debug.Log(stateInfo.IsName("comboo2"));
     }

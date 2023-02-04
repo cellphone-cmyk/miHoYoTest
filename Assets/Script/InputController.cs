@@ -83,16 +83,20 @@ public class InputController : MonoBehaviour
                 case 3:
                     rt_Input = true;
                     HandleAttackInput(delta,isInteracting);
+                    Debug.Log("heavy attack interrupt");
                     break;
             }
             playerManager.nextAction = 0;
         }
         else
-        MoveInput(delta,isInteracting);
-        HandleAttackInput(delta, isInteracting);
-        HandleLockOnInput();
-        HandleDeath();
-        HandleDodgeInput(delta, isInteracting);
+        {
+            MoveInput(delta, isInteracting);
+            HandleAttackInput(delta, isInteracting);
+            HandleLockOnInput();
+            HandleDeath();
+            HandleDodgeInput(delta, isInteracting);
+        }
+
     }
 
     private void MoveInput(float delta, bool isInteracting)
@@ -135,35 +139,23 @@ public class InputController : MonoBehaviour
             if (playerManager.canDoCombo)
             {
                 comboFlag = true;
-                playerAttacker.HandleWeaponCombo();
+                playerAttacker.HandleWeaponCombo(isInteracting);
                 comboFlag = false;
             }
             else
             {
-                if (playerManager.isInteracting)
-                {
-                    playerAttacker.HandleLightAttack(isInteracting);
-                    return;
-                }
-                    
-
-                if (playerManager.canDoCombo)
-                    return;
                 playerAttacker.HandleLightAttack(isInteracting);
-                return;
             }
         }
 
         if (rt_Input)
         {
-            if (playerManager.canDoSpecialCombo)
+            if (playerManager.canDoCombo)
             {
                 comboFlag = true;
-                playerAttacker.HandleSpecialCombo();
+                playerAttacker.HandleWeaponCombo(isInteracting);
                 comboFlag = false;
             }
-            if (playerManager.isInteracting)
-                return;
 
             if (playerManager.canDoSpecialCombo)
                 return;

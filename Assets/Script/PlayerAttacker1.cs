@@ -35,12 +35,13 @@ public class PlayerAttacker1 : MonoBehaviour
                 {
                     nextAction = 2; //2Îª¹¥»÷
                     playerManager.nextAction = nextAction;
+                    
                     return;
                 }else if (inputHandler.rt_Input)
                 {
                     nextAction = 3; //3ÎªÖØ¹¥»÷
                     playerManager.nextAction = nextAction;
-                    Debug.Log("3");
+                    
                     return;
                 }
 

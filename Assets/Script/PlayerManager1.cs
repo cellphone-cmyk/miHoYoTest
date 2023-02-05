@@ -59,7 +59,7 @@ public class PlayerManager1 : MonoBehaviour
 
         if (forbidInput == false) //缓存保护期间不接受任何输入
         {
-                inputHandler.TickInput(delta, isInteracting);  //根据isInteracting真假，决定是缓存指令还是执行指令
+            inputHandler.TickInput(delta, isInteracting);  //根据isInteracting真假，决定是缓存指令还是执行指令
             if(isInteracting == false)
                 playerLocomotion.HandleMovement(delta); 
         }

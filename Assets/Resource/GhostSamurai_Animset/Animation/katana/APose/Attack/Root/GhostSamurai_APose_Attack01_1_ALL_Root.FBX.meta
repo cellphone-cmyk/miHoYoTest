@@ -541,8 +541,10 @@ ModelImporter:
       will be discarded.\n\t'ball_l' has translation animation that will be discarded.\n\t'calf_r'
       has translation animation that will be discarded.\n\t'foot_r' has translation
       animation that will be discarded.\n\t'ball_r' has translation animation that
-      will be discarded.\nEvent BufferProtector has a time (0.000000) outside the
-      clip's valid range (0.000000..2.166667). It will never be fired"
+      will be discarded.\nEvent EnableCombo has a time (0.000000) outside the clip's
+      valid range (0.000000..2.166667). It will never be firedEvent BufferProtector
+      has a time (0.000000) outside the clip's valid range (0.000000..2.166667).
+      It will never be fired"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -587,15 +589,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
+      - time: 0.047872342
         functionName: BufferProtector
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.11568638
-        functionName: EarlyCancel
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

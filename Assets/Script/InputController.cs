@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+
     public float horizontal;
     public float vertical;
     public float moveAmount;
@@ -68,7 +69,7 @@ public class InputController : MonoBehaviour
 
     public void TickInput(float delta,bool isInteracting) //isInteracting：在此变量false之前，禁止其他播放其他动画，但期间如果forbidInput不为True可以缓存命令
     {
-        if (playerManager.nextAction != 0 && playerManager.cancel)
+        if (playerManager.nextAction != 0 && !playerManager.isInteracting)
         {
             switch (playerManager.nextAction)
             {
@@ -79,11 +80,16 @@ public class InputController : MonoBehaviour
                 case 2:
                     rb_Input = true;
                     HandleAttackInput(delta,isInteracting);
+                    Debug.Log("light attack interrupt");
                     break;
                 case 3:
                     rt_Input = true;
                     HandleAttackInput(delta,isInteracting);
                     Debug.Log("heavy attack interrupt");
+                    break;
+                case 4:
+                    MoveInput(delta, isInteracting);
+                    Debug.Log("move interrupt");
                     break;
             }
             playerManager.nextAction = 0;
@@ -101,11 +107,21 @@ public class InputController : MonoBehaviour
 
     private void MoveInput(float delta, bool isInteracting)
     {
+      if (isInteracting)
+        {
+            int nextAction = 4;
+            if (playerManager.nextAction == 0 && !playerManager.forbidMovement)
+            {
+                playerManager.nextAction = nextAction;
+            }           
+            return;
+        }
         horizontal = movementInput.x;
         vertical = movementInput.y;
-        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
+        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+
     }
 
     public void HandleDodgeInput(float delta, bool isInteracting)
@@ -157,17 +173,21 @@ public class InputController : MonoBehaviour
                 comboFlag = false;
             }
 
-            if (playerManager.canDoSpecialCombo)
-                return;
-            playerAttacker.HandleHeavyAttack(isInteracting);
+            //if (playerManager.canDoSpecialCombo)
+            //    return;
+            else
+            {
+                playerAttacker.HandleHeavyAttack(isInteracting);
+            }
+            
         }
 
-        if (ultimate_skill)
-        {
-            if (playerManager.isInteracting)
-                return;
-            playerAttacker.HandleUltimateAttack(delta);
-        }
+        //if (ultimate_skill)
+        //{
+        //    if (playerManager.isInteracting)
+        //        return;
+        //    playerAttacker.HandleUltimateAttack(delta);
+        //·
     }
 
     private void HandleLockOnInput()

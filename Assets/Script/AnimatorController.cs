@@ -178,7 +178,7 @@ public class AnimatorController : MonoBehaviour
         //缓存保护->最早退出时间段，原则上可以晚于动画结束时间，以创造类似“内置冷却”的效果
         anim.SetBool("isInteracting", false);
         anim.SetBool("cancel", true);
-        anim.SetBool("forbidMovement", false);
+        
         canRotate = true;
         //playerLocomotion.moveDirection.y = 0;
     }
@@ -188,6 +188,7 @@ public class AnimatorController : MonoBehaviour
         //最迟退出：同样用来标记一段辅助输入的时间，在最早退出->最迟退出的时间追加指令，连技不会中断
         //canDoFlag = false;
         anim.SetBool("canDoCombo", false);
+        anim.SetBool("forbidMovement", false);
         canRotate = true;
     }
 
@@ -204,4 +205,5 @@ public class AnimatorController : MonoBehaviour
     {
         //关闭所有输入，用于过场动画，处决动画，必杀动画等
     }
+
 }

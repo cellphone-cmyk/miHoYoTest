@@ -577,27 +577,27 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: BufferProtector
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.21010639
         functionName: EnableCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.22264147
+      - time: 0.09042553
+        functionName: BufferProtector
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.45136485
         functionName: EarlistExit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.49811342
+      - time: 0.6177943
         functionName: LatestExit
         data: 
         objectReferenceParameter: {instanceID: 0}

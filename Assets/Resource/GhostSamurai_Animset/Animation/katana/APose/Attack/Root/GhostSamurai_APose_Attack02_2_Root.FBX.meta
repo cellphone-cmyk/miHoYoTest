@@ -551,7 +551,9 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'foot_r' has translation
       animation that will be discarded.\n\t'ball_r' has translation animation that
       will be discarded.\nEvent BufferProtector has a time (0.000000) outside the
-      clip's valid range (0.000001..1.500001). It will never be fired"
+      clip's valid range (0.000001..1.500001). It will never be firedEvent EnableCombo
+      has a time (0.000000) outside the clip's valid range (0.000001..1.500001).
+      It will never be fired"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -590,21 +592,21 @@ ModelImporter:
       curves: []
       events:
       - time: 0
+        functionName: EnableCombo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.14361702
         functionName: BufferProtector
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.49056625
+      - time: 0.5198216
         functionName: EarlistExit
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0
-        functionName: EnableCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

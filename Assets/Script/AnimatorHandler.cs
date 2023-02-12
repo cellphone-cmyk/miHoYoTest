@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AnimatorController : MonoBehaviour
+public class AnimatorHandler : MonoBehaviour
 {
     PlayerManager1 playerManager;
     public Animator anim;
@@ -176,17 +176,19 @@ public class AnimatorController : MonoBehaviour
         //最早退出：当动画播放到最早退出时间，可以开始跳转到已经缓存了的新动画
         //在缓存保护->最早退出时间段，玩家的输入命令可以缓存。
         //缓存保护->最早退出时间段，原则上可以晚于动画结束时间，以创造类似“内置冷却”的效果
+        anim.SetBool("forbidInput", false);
         anim.SetBool("isInteracting", false);
-        anim.SetBool("cancel", true);
-        
-        canRotate = true;
+        anim.SetBool("cancel", true);       
+        //canRotate = true;
         //playerLocomotion.moveDirection.y = 0;
     }
 
     public void LatestExit()
-    {       
+    {
         //最迟退出：同样用来标记一段辅助输入的时间，在最早退出->最迟退出的时间追加指令，连技不会中断
         //canDoFlag = false;
+        anim.SetBool("isInteracting", false);
+        anim.SetBool("forbidInput", false);
         anim.SetBool("canDoCombo", false);
         anim.SetBool("forbidMovement", false);
         canRotate = true;

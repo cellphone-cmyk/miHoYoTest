@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAvoider : MonoBehaviour
 {
-    AnimatorController animatorHandler;
+    AnimatorHandler animatorHandler;
     InputController inputHandler;
     TraumaInducer traumaInducer;
     StressReceiver stressReceiver;
@@ -18,7 +18,7 @@ public class PlayerAvoider : MonoBehaviour
 
     private void Awake()
     {
-        animatorHandler = GetComponentInChildren<AnimatorController>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
         inputHandler = GetComponent<InputController>();
         traumaInducer = GetComponentInChildren<TraumaInducer>();
         stressReceiver = GetComponentInChildren<StressReceiver>();
@@ -28,7 +28,7 @@ public class PlayerAvoider : MonoBehaviour
     public void HandleAvoid(bool isInteracting)
     {
         //允许转向
-        //animatorHandler.canRotate = true;
+        animatorHandler.canRotate = true;
         //正常获取移动向量
         moveDirection = playerLocomotion.cameraObject.forward * inputHandler.vertical;
         moveDirection += playerLocomotion.cameraObject.right * inputHandler.horizontal;

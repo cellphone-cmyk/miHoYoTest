@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttacker1 : MonoBehaviour
 {
-    AnimatorController animatorHandler;
+    AnimatorHandler animatorHandler;
     InputController inputHandler;
     TraumaInducer traumaInducer;
     StressReceiver stressReceiver;
@@ -18,7 +18,7 @@ public class PlayerAttacker1 : MonoBehaviour
 
     private void Awake()
     {
-        animatorHandler = GetComponentInChildren<AnimatorController>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
         inputHandler = GetComponent<InputController>();
         traumaInducer = GetComponentInChildren<TraumaInducer>();
         stressReceiver = GetComponentInChildren<StressReceiver>();

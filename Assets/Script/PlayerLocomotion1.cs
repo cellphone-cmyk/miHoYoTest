@@ -12,7 +12,7 @@ public class PlayerLocomotion1 : MonoBehaviour
     [HideInInspector]
     public Transform myTransform;
     [HideInInspector]
-    public AnimatorController animatorHandler;
+    public AnimatorHandler animatorHandler;
 
     public new Rigidbody rigidbody;
     public GameObject normalCamera;
@@ -28,7 +28,7 @@ public class PlayerLocomotion1 : MonoBehaviour
         playerManager = GetComponent<PlayerManager1>();
         rigidbody = GetComponent<Rigidbody>();
         inputHandler = GetComponent<InputController>();
-        animatorHandler = GetComponentInChildren<AnimatorController>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
         cameraObject = Camera.main.transform;
         myTransform = transform;
         animatorHandler.Initialize();
@@ -84,6 +84,11 @@ public class PlayerLocomotion1 : MonoBehaviour
         if (inputHandler.moveAmount > 0.5)
         {
             moveDirection *= speed;
+        }
+        else
+        // 如果输入的向量小于一定值，则归0，代表不移动
+        {
+            inputHandler.moveAmount = 0; 
         }
 
         if (!playerManager.forbidMovement)

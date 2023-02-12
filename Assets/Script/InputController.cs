@@ -110,7 +110,7 @@ public class InputController : MonoBehaviour
       if (isInteracting)
         {
             int nextAction = 4;
-            if (playerManager.nextAction == 0 && !playerManager.forbidMovement)
+            if (playerManager.nextAction == 0 && !playerManager.forbidMovement && Mathf.Abs(movementInput.y) >= 0.5f)
             {
                 playerManager.nextAction = nextAction;
             }           

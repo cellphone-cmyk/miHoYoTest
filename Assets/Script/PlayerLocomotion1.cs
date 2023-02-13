@@ -112,6 +112,12 @@ public class PlayerLocomotion1 : MonoBehaviour
 
     }
 
+
+    public void HandleAnimDirection(Vector3 movedirection)
+    {
+        myTransform.rotation = Quaternion.LookRotation(moveDirection);
+    }
+
     //无用
     public void HandleRollingAndSprinting(float delta)
     {

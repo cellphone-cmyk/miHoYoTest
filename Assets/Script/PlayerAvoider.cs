@@ -46,11 +46,10 @@ public class PlayerAvoider : MonoBehaviour
 
         //通过flag来统一判定输出口
         if (inputHandler.dodgeFlag)
-        {
-            playerLocomotion.moveDirection = moveDirection; // 翻滚方向
-            
+        {        
             if (moveAmount > 0)
             {
+                playerLocomotion.HandleAnimDirection(moveDirection);// 翻滚方向  
                 animatorHandler.PlayTargetAnimation("Avoid_F", true);
                 playerLocomotion.moveDirection.y = 0;
 

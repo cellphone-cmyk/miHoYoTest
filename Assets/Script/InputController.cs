@@ -121,13 +121,15 @@ public class InputController : MonoBehaviour
         mouseX = cameraInput.x;
         mouseY = cameraInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-
     }
 
     public void HandleDodgeInput(float delta, bool isInteracting)
     {
         if (LshiftInput)
         {
+            horizontal = movementInput.x;
+            vertical = movementInput.y;
+            //Debug.Log(movementInput);
             if (playerManager.isInteracting)
             {
                 playerAvoider.HandleAvoid(isInteracting);
